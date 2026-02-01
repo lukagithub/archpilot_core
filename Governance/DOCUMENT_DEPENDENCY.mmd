@@ -1,6 +1,10 @@
 %% AI 变更保护声明
 %% 本文件受 AI 变更保护，修改需人工确认
 
+%% ========================================
+%% 文档依赖关系图
+%% ========================================
+
 graph TD
     subgraph 核心定义层
         A[GOVERNANCE_OVERVIEW.md]
@@ -63,4 +67,79 @@ graph TD
     I --> P
     K --> M
     L --> N
+
+%% ========================================
+%% AI Prompt 分层策略图
+%% 说明：将文档转化为 AI 的 System/User Prompt
+%% ========================================
+
+graph TB
+    subgraph System_Prompt["System Prompt（始终加载）"]
+        direction TB
+        SP_L0["Layer 0: 角色定义"]
+        SP_L1["Layer 1: 核心约束"]
+
+        SP_L0 --- O2[agent_dev_main.md]
+        SP_L0 --- P2[agent_release.md]
+        SP_L1 --- D2[rules_agent.md]
+        SP_L1 --- B2["ARCHITECTURE_DEFINITION.md（精简）"]
+        SP_L1 --- C2["GLOSSARY.md（精简）"]
+    end
+
+    subgraph User_Prompt["User Prompt（按需加载）"]
+        direction TB
+        UP_L2["Layer 2: 任务规则"]
+        UP_L3["Layer 3: 检查与模板"]
+
+        UP_L2 --- E2[rules_coding.md]
+        UP_L2 --- F2[rules_naming.md]
+        UP_L2 --- G2[rules_scripts.md]
+        UP_L2 --- H2[rules_release.md]
+        UP_L2 --- I2[rules_tag.md]
+        UP_L2 --- J2[rules_testcases.md]
+
+        UP_L3 --- K2[dev_checklist.md]
+        UP_L3 --- L2[release_checklist.md]
+        UP_L3 --- T2[templates/*]
+    end
+
+    subgraph Reference["参考文档（不直接作为 Prompt）"]
+        M2[AI_Development_Guide.md]
+        N2[AI_Release_Automation_Guide.md]
+        A2[GOVERNANCE_OVERVIEW.md]
+    end
+
+    %% Prompt 层级关系
+    System_Prompt --> User_Prompt
+    User_Prompt -.-> Reference
+
+%% ========================================
+%% 任务类型与规则加载映射
+%% ========================================
+
+graph LR
+    subgraph 任务类型
+        T1[创建文档]
+        T2[编写代码]
+        T3[编写脚本]
+        T4[编写测试]
+        T5[版本发布]
+        T6[质量检查]
+    end
+
+    subgraph 需加载的User_Prompt
+        R1[rules_naming.md + template]
+        R2[rules_coding.md + rules_naming.md]
+        R3[rules_scripts.md]
+        R4[rules_testcases.md + template]
+        R5[rules_release.md + rules_tag.md]
+        R6[dev_checklist.md / release_checklist.md]
+    end
+
+    T1 --> R1
+    T2 --> R2
+    T3 --> R3
+    T4 --> R4
+    T5 --> R5
+    T6 --> R6
 
