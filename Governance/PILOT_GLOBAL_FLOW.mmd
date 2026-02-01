@@ -16,15 +16,11 @@ flowchart TB
         direction LR
         subgraph LG1["Core文件(冷色)"]
             direction LR
-            L1[/"Entry 入口"/]
-            L2[/"Rules 规则"/]
-            L3[/"Workflow 工作流"/]
-            L4[/"Templates 模板"/]
-            L5[/"Scripts 脚本"/]
+            L1[/"Entry"/] ~~~ L2[/"Rules"/] ~~~ L3[/"Workflow"/] ~~~ L4[/"Templates"/] ~~~ L5[/"Scripts"/]
         end
         subgraph LG2["过程产物(暖色)"]
             direction LR
-            L6[/"Output 产出"/]
+            L6[/"Output"/]
         end
         LG1 ~~~ LG2
     end
