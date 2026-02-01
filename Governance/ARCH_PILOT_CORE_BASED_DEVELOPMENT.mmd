@@ -6,29 +6,38 @@
 %% ========================================
 
 flowchart TB
-    %% ==================== 角色入口 ====================
-    subgraph Role["👤 系统/软件架构工程师"]
+    %% ==================== 顶部：角色 + 文档链 并列 ====================
+    subgraph TopSection[" "]
         direction LR
-        R1["🏛️ 架构设计"] ~~~ R2["💻 开发指导"] ~~~ R3["🔍 质量把控"] ~~~ R4["🚀 版本发布"]
-    end
 
-    %% ==================== 图例（文档维度颜色） ====================
-    subgraph Legend["📚 文档链/过程产物"]
-        direction TB
-        subgraph LG1["Core 框架文件（抽象/稳定）"]
-            direction LR
-            L1[/"Entry: 无前缀"/] ~~~ L2[/"Rules: rules_"/] ~~~ L3[/"Workflow: flow_"/] ~~~ L4[/"Templates: tpl_"/] ~~~ L5[/"Checklists: chk_"/] ~~~ L5b[/"Scripts: *.py|*.sh"/]
+        subgraph Role["👤 系统/软件架构工程师"]
+            direction TB
+            R1["🏛️ 架构设计"]
+            R2["💻 开发指导"]
+            R3["🔍 质量把控"]
+            R4["🚀 版本发布"]
+            R1 ~~~ R2 ~~~ R3 ~~~ R4
         end
-        subgraph LG2["过程产物（具体/项目输出）"]
-            direction LR
-            L6[/"L1: FR_ 需求"/] ~~~ L7[/"L2: SA_ 架构"/] ~~~ L8[/"L3: DD_ 设计"/] ~~~ L9[/"L4: 代码"/] ~~~ L10[/"L5: TC_ 测试"/]
+
+        subgraph Legend["📚 文档链/过程产物"]
+            direction TB
+            subgraph LG1["Core 框架文件（抽象/稳定）"]
+                direction LR
+                L1[/"Entry: 无前缀"/] ~~~ L2[/"Rules: rules_"/] ~~~ L3[/"Workflow: flow_"/] ~~~ L4[/"Templates: tpl_"/] ~~~ L5[/"Checklists: chk_"/] ~~~ L5b[/"Scripts: *.py|*.sh"/]
+            end
+            subgraph LG2["过程产物（具体/项目输出）"]
+                direction LR
+                L6[/"L1: FR_ 需求"/] ~~~ L7[/"L2: SA_ 架构"/] ~~~ L8[/"L3: DD_ 设计"/] ~~~ L9[/"L4: 代码"/] ~~~ L10[/"L5: TC_ 测试"/]
+            end
+            LG1 --> LG2
         end
-        LG1 --> LG2
+
+        Role ~~~ Legend
     end
 
     %% ==================== 初始化（仅执行一次） ====================
-    subgraph Init["🚀 初始化"]
-        direction TB
+    subgraph Init["🚀 初始化（一次性）"]
+        direction LR
         I1["① 理解框架"]
         I_D1[/"README.md"/]
         I_D2[/"QUICK_START.md"/]
@@ -130,8 +139,8 @@ flowchart TB
     %% 迭代闭环
     P4 -.->|🔄 下一迭代| P1
 
-    %% ==================== AI Pilot 协作（底部） ====================
-    subgraph AI_Pilot["🤖 AI Pilot 协作"]
+    %% ==================== AI Pilot 协作（底部支撑） ====================
+    subgraph AI_Pilot["🤖 AI Pilot 协作（贯穿整个迭代过程）"]
         direction LR
 
         subgraph AI_IN["输入"]
@@ -140,9 +149,6 @@ flowchart TB
             AI_D2[/"agent_release.md"/]
             AI_D3[/"system_prompt_core.md"/]
             AI_D4[/"user_prompt_*.md"/]
-            AI_D1 --> AI_D3
-            AI_D2 --> AI_D3
-            AI_D3 --> AI_D4
         end
 
         subgraph AI_PROC["处理"]
@@ -150,25 +156,32 @@ flowchart TB
             AI_P1["加载 System Prompt"]
             AI_P2["加载 User Prompt"]
             AI_P3["AI 执行任务"]
-            AI_P1 --> AI_P2 --> AI_P3
         end
 
         subgraph AI_OUT["输出"]
             direction TB
-            AI_O1[/"FR_*.md"/]
-            AI_O2[/"SA_*.md"/]
-            AI_O3[/"DD_*.md"/]
+            AI_O1[/"FR_*.md 需求文档"/]
+            AI_O2[/"SA_*.md 架构文档"/]
+            AI_O3[/"DD_*.md 设计文档"/]
             AI_O4[/"代码文件"/]
-            AI_O5[/"TC_*.md"/]
-            AI_O1 --> AI_O2 --> AI_O3 --> AI_O4 --> AI_O5
+            AI_O5[/"TC_*.md 测试用例"/]
         end
 
-        AI_IN ==> AI_PROC ==> AI_OUT
+        AI_D1 --> AI_D3
+        AI_D2 --> AI_D3
+        AI_D3 --> AI_D4
+        AI_D4 --> AI_P1
+        AI_P1 --> AI_P2
+        AI_P2 --> AI_P3
+        AI_P3 --> AI_O1
+        AI_O1 --> AI_O2
+        AI_O2 --> AI_O3
+        AI_O3 --> AI_O4
+        AI_O4 --> AI_O5
     end
 
     %% ==================== 层级连接 ====================
-    Role --> Legend
-    Legend --> Init
+    TopSection --> Init
     Init --> Phases
     Phases --> AI_Pilot
 
@@ -193,7 +206,7 @@ flowchart TB
     classDef outputHighStyle fill:#ffccbc,stroke:#ff5722,stroke-width:2px,color:#000
 
     %% 应用样式 - 所有大框统一
-    class Role,Legend,LG1,LG2,Init,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
+    class TopSection,Role,Legend,LG1,LG2,Init,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
     class P1_S,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
     class AI_P1,AI_P2,AI_P3 stepStyle
     class R1,R2,R3,R4 stepStyle
@@ -240,5 +253,6 @@ flowchart TB
     %% AI Pilot: 输入(Core文件) + 输出(过程产物-高饱和暖色)
     class AI_D1,AI_D2 ruleStyle
     class AI_D3,AI_D4 tplStyle
+    class AI_P1,AI_P2,AI_P3 stepStyle
     class AI_O1,AI_O2,AI_O3 outputStyle
     class AI_O4,AI_O5 outputHighStyle
