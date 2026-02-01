@@ -11,19 +11,31 @@ flowchart TB
         R1["🏛️ 架构设计"] ~~~ R2["💻 开发指导"] ~~~ R3["🔍 质量把控"] ~~~ R4["🚀 版本发布"]
     end
 
+    %% ==================== 图例（文档维度颜色） ====================
+    subgraph Legend["📚 文档维度"]
+        direction LR
+        L1[/"Entry 入口"/]
+        L2[/"Rules 规则"/]
+        L3[/"Workflow 工作流"/]
+        L4[/"Templates 模板"/]
+        L5[/"Scripts 脚本"/]
+        L6[/"Output 产出"/]
+        L1 ~~~ L2 ~~~ L3 ~~~ L4 ~~~ L5 ~~~ L6
+    end
+
     %% ==================== Pilot 迭代周期（核心） ====================
     subgraph Phases["📅 Pilot 迭代周期"]
         direction LR
 
-        subgraph P1["Phase1 启动"]
+        subgraph P1["Gate1 启动"]
             direction TB
-            P1_S["① 理解框架　　"]
-            P1_D1[/"📖 README"/]
-            P1_D2[/"📖 QUICK_START"/]
-            P1_M["② 部署项目　　"]
-            P1_D3[/"🔧 deploy_project.sh"/]
-            P1_E["③ 规划迭代　　"]
-            P1_D4[/"🔄 flow_planning"/]
+            P1_S["① 理解框架"]
+            P1_D1[/"README"/]
+            P1_D2[/"QUICK_START"/]
+            P1_M["② 部署项目"]
+            P1_D3[/"deploy_project.sh"/]
+            P1_E["③ 规划迭代"]
+            P1_D4[/"flow_planning"/]
             P1_S --- P1_D1 & P1_D2
             P1_D1 & P1_D2 --- P1_M
             P1_M --- P1_D3
@@ -31,16 +43,16 @@ flowchart TB
             P1_E --- P1_D4
         end
 
-        subgraph P2["Phase2 设计"]
+        subgraph P2["Gate2 设计"]
             direction TB
-            P2_S["① L1 需求　　　"]
-            P2_D1[/"📏 ARCHITECTURE_DEF"/]
-            P2_D2[/"📝 requirement_tpl"/]
-            P2_M["② L2 架构　　　"]
-            P2_D3[/"📝 architecture_tpl"/]
-            P2_E["③ L3 设计　　　"]
-            P2_D4[/"📝 design_tpl"/]
-            P2_D5[/"📏 rules_naming"/]
+            P2_S["① L1 需求"]
+            P2_D1[/"ARCHITECTURE_DEF"/]
+            P2_D2[/"requirement_tpl"/]
+            P2_M["② L2 架构"]
+            P2_D3[/"architecture_tpl"/]
+            P2_E["③ L3 设计"]
+            P2_D4[/"design_tpl"/]
+            P2_D5[/"rules_naming"/]
             P2_S --- P2_D1 & P2_D2
             P2_D1 & P2_D2 --- P2_M
             P2_M --- P2_D3
@@ -48,16 +60,16 @@ flowchart TB
             P2_E --- P2_D4 & P2_D5
         end
 
-        subgraph P3["Phase3 实现"]
+        subgraph P3["Gate3 实现"]
             direction TB
-            P3_S["① L4 代码　　　"]
-            P3_D1[/"📏 rules_coding"/]
-            P3_D2[/"🔄 flow_implement"/]
-            P3_M["② L5 测试　　　"]
-            P3_D3[/"📝 testcase_tpl"/]
-            P3_E["③ 质量检查　　"]
-            P3_D4[/"🔧 validate_trace"/]
-            P3_D5[/"🔧 check_naming"/]
+            P3_S["① L4 代码"]
+            P3_D1[/"rules_coding"/]
+            P3_D2[/"flow_implement"/]
+            P3_M["② L5 测试"]
+            P3_D3[/"testcase_tpl"/]
+            P3_E["③ 质量检查"]
+            P3_D4[/"validate_trace.py"/]
+            P3_D5[/"check_naming.py"/]
             P3_S --- P3_D1 & P3_D2
             P3_D1 & P3_D2 --- P3_M
             P3_M --- P3_D3
@@ -67,13 +79,13 @@ flowchart TB
 
         subgraph P4["Gate4 发布"]
             direction TB
-            P4_S["① 版本发布　　"]
-            P4_D1[/"📏 rules_release"/]
-            P4_D2[/"🔄 flow_release"/]
-            P4_M["② 验收闭环　　"]
-            P4_D3[/"🔧 calculate_score"/]
-            P4_E["③ 迭代复盘　　"]
-            P4_D4[/"📄 ReleaseNote"/]
+            P4_S["① 版本发布"]
+            P4_D1[/"rules_release"/]
+            P4_D2[/"flow_release"/]
+            P4_M["② 验收闭环"]
+            P4_D3[/"calculate_score.py"/]
+            P4_E["③ 迭代复盘"]
+            P4_D4[/"ReleaseNote"/]
             P4_S --- P4_D1 & P4_D2
             P4_D1 & P4_D2 --- P4_M
             P4_M --- P4_D3
@@ -94,19 +106,59 @@ flowchart TB
     end
 
     %% ==================== 层级连接 ====================
-    Role --> Phases
+    Role --> Legend
+    Legend --> Phases
     Phases --> AI_Pilot
 
     %% ==================== 样式定义 ====================
+    %% 框架样式
     classDef roleStyle fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#000
-    classDef phaseStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef phaseStyle fill:#fafafa,stroke:#616161,stroke-width:2px,color:#000
     classDef aiStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
-    classDef docStyle fill:#fff9c4,stroke:#f57f17,stroke-width:1px,color:#000
-    classDef stepStyle fill:#ffffff,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef legendStyle fill:#fafafa,stroke:#bdbdbd,stroke-width:1px,color:#000
+    classDef stepStyle fill:#fff,stroke:#616161,stroke-width:2px,color:#000
 
+    %% 文档维度颜色
+    classDef entryStyle fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef workflowStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef tplStyle fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef scriptStyle fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef outputStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#000
+
+    %% 应用样式
     class Role roleStyle
     class Phases,P1,P2,P3,P4 phaseStyle
     class AI_Pilot aiStyle
-    class P1_D1,P1_D2,P1_D3,P1_D4,P2_D1,P2_D2,P2_D3,P2_D4,P2_D5,P3_D1,P3_D2,P3_D3,P3_D4,P3_D5,P4_D1,P4_D2,P4_D3,P4_D4 docStyle
+    class Legend legendStyle
     class P1_S,P1_M,P1_E,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
 
+    %% 图例颜色
+    class L1 entryStyle
+    class L2 ruleStyle
+    class L3 workflowStyle
+    class L4 tplStyle
+    class L5 scriptStyle
+    class L6 outputStyle
+
+    %% Gate1: Entry(红) + Scripts(紫) + Workflow(绿)
+    class P1_D1,P1_D2 entryStyle
+    class P1_D3 scriptStyle
+    class P1_D4 workflowStyle
+
+    %% Gate2: Entry(红) + Templates(蓝) + Rules(黄)
+    class P2_D1 entryStyle
+    class P2_D2,P2_D3,P2_D4 tplStyle
+    class P2_D5 ruleStyle
+
+    %% Gate3: Rules(黄) + Workflow(绿) + Templates(蓝) + Scripts(紫)
+    class P3_D1 ruleStyle
+    class P3_D2 workflowStyle
+    class P3_D3 tplStyle
+    class P3_D4,P3_D5 scriptStyle
+
+    %% Gate4: Rules(黄) + Workflow(绿) + Scripts(紫) + Output(橙)
+    class P4_D1 ruleStyle
+    class P4_D2 workflowStyle
+    class P4_D3 scriptStyle
+    class P4_D4 outputStyle
