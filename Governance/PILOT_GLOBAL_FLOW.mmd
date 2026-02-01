@@ -12,7 +12,7 @@ flowchart TB
     end
 
     %% ==================== 图例（文档维度颜色） ====================
-    subgraph Legend["📚 文档维度"]
+    subgraph Legend["📚 文档链/过程产物"]
         direction LR
         L1[/"Entry 入口"/]
         L2[/"Rules 规则"/]
@@ -24,18 +24,18 @@ flowchart TB
     end
 
     %% ==================== Pilot 迭代周期（核心） ====================
-    subgraph Phases["📅 Pilot 迭代周期"]
+    subgraph Phases["📅 基于 ArchPilot Core 的迭代过程"]
         direction LR
 
         subgraph P1["Gate1 启动"]
             direction TB
             P1_S["① 理解框架"]
-            P1_D1[/"README"/]
-            P1_D2[/"QUICK_START"/]
+            P1_D1[/"README.md"/]
+            P1_D2[/"QUICK_START.md"/]
             P1_M["② 部署项目"]
             P1_D3[/"deploy_project.sh"/]
             P1_E["③ 规划迭代"]
-            P1_D4[/"flow_planning"/]
+            P1_D4[/"flow_planning.md"/]
             P1_S --- P1_D1 & P1_D2
             P1_D1 & P1_D2 --- P1_M
             P1_M --- P1_D3
@@ -46,13 +46,13 @@ flowchart TB
         subgraph P2["Gate2 设计"]
             direction TB
             P2_S["① L1 需求"]
-            P2_D1[/"ARCHITECTURE_DEF"/]
-            P2_D2[/"requirement_tpl"/]
+            P2_D1[/"ARCHITECTURE_DEFINITION.md"/]
+            P2_D2[/"requirement_template.md"/]
             P2_M["② L2 架构"]
-            P2_D3[/"architecture_tpl"/]
+            P2_D3[/"architecture_template.md"/]
             P2_E["③ L3 设计"]
-            P2_D4[/"design_tpl"/]
-            P2_D5[/"rules_naming"/]
+            P2_D4[/"design_template.md"/]
+            P2_D5[/"rules_naming.md"/]
             P2_S --- P2_D1 & P2_D2
             P2_D1 & P2_D2 --- P2_M
             P2_M --- P2_D3
@@ -63,10 +63,10 @@ flowchart TB
         subgraph P3["Gate3 实现"]
             direction TB
             P3_S["① L4 代码"]
-            P3_D1[/"rules_coding"/]
-            P3_D2[/"flow_implement"/]
+            P3_D1[/"rules_coding.md"/]
+            P3_D2[/"flow_implement.md"/]
             P3_M["② L5 测试"]
-            P3_D3[/"testcase_tpl"/]
+            P3_D3[/"testcase_template.md"/]
             P3_E["③ 质量检查"]
             P3_D4[/"validate_trace.py"/]
             P3_D5[/"check_naming.py"/]
@@ -80,12 +80,12 @@ flowchart TB
         subgraph P4["Gate4 发布"]
             direction TB
             P4_S["① 版本发布"]
-            P4_D1[/"rules_release"/]
-            P4_D2[/"flow_release"/]
+            P4_D1[/"rules_release.md"/]
+            P4_D2[/"flow_release.md"/]
             P4_M["② 验收闭环"]
             P4_D3[/"calculate_score.py"/]
             P4_E["③ 迭代复盘"]
-            P4_D4[/"ReleaseNote"/]
+            P4_D4[/"ReleaseNote/"/]
             P4_S --- P4_D1 & P4_D2
             P4_D1 & P4_D2 --- P4_M
             P4_M --- P4_D3
