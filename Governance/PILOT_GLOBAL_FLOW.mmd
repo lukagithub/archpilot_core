@@ -23,24 +23,29 @@ flowchart TB
         L1 ~~~ L2 ~~~ L3 ~~~ L4 ~~~ L5 ~~~ L6
     end
 
+    %% ==================== 初始化（仅执行一次） ====================
+    subgraph Init["🚀 初始化（一次性）"]
+        direction TB
+        I1["① 理解框架"]
+        I_D1[/"README.md"/]
+        I_D2[/"QUICK_START.md"/]
+        I2["② 部署项目"]
+        I_D3[/"deploy_project.sh"/]
+        I1 --- I_D1 & I_D2
+        I_D1 & I_D2 --- I2
+        I2 --- I_D3
+    end
+
     %% ==================== Pilot 迭代周期（核心） ====================
     subgraph Phases["📅 基于 ArchPilot Core 的迭代过程"]
         direction LR
 
-        subgraph P1["Gate1 启动"]
+        subgraph P1["Gate1 规划"]
             direction TB
-            P1_S["① 理解框架"]
-            P1_D1[/"README.md"/]
-            P1_D2[/"QUICK_START.md"/]
-            P1_M["② 部署项目"]
-            P1_D3[/"deploy_project.sh"/]
-            P1_E["③ 规划迭代"]
-            P1_D4[/"flow_planning.md"/]
+            P1_S["① 规划/微调迭代"]
+            P1_D1[/"flow_planning.md"/]
+            P1_D2[/"ARCHITECTURE_DEFINITION.md"/]
             P1_S --- P1_D1 & P1_D2
-            P1_D1 & P1_D2 --- P1_M
-            P1_M --- P1_D3
-            P1_D3 --- P1_E
-            P1_E --- P1_D4
         end
 
         subgraph P2["Gate2 设计"]
@@ -136,7 +141,8 @@ flowchart TB
 
     %% ==================== 层级连接 ====================
     Role --> Legend
-    Legend --> Phases
+    Legend --> Init
+    Init --> Phases
     Phases --> AI_Pilot
 
     %% ==================== 连线样式（黑色） ====================
@@ -156,10 +162,11 @@ flowchart TB
     classDef outputStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#000
 
     %% 应用样式 - 所有大框统一
-    class Role,Legend,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
-    class P1_S,P1_M,P1_E,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
+    class Role,Legend,Init,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
+    class P1_S,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
     class AI_P1,AI_P2,AI_P3 stepStyle
     class R1,R2,R3,R4 stepStyle
+    class I1,I2 stepStyle
 
     %% 图例颜色
     class L1 entryStyle
@@ -169,10 +176,13 @@ flowchart TB
     class L5 scriptStyle
     class L6 outputStyle
 
-    %% Gate1: Entry(红) + Scripts(紫) + Workflow(绿)
-    class P1_D1,P1_D2 entryStyle
-    class P1_D3 scriptStyle
-    class P1_D4 workflowStyle
+    %% Init: Entry(红) + Scripts(紫)
+    class I_D1,I_D2 entryStyle
+    class I_D3 scriptStyle
+
+    %% Gate1 规划: Workflow(绿) + Entry(红)
+    class P1_D1 workflowStyle
+    class P1_D2 entryStyle
 
     %% Gate2: Entry(红) + Templates(蓝) + Rules(黄)
     class P2_D1 entryStyle
