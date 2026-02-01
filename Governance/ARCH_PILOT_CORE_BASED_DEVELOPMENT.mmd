@@ -23,7 +23,7 @@ flowchart TB
             direction TB
             subgraph LG1["Core 框架文件（抽象/稳定）"]
                 direction LR
-                L1[/"Entry: 无前缀"/] ~~~ L2[/"Rules: rules_"/] ~~~ L3[/"Workflow: flow_"/] ~~~ L4[/"Templates: tpl_"/] ~~~ L5[/"Checklists: chk_"/] ~~~ L5b[/"Scripts: *.py|*.sh"/]
+                L1[/"Entry: UPPER_CASE"/] ~~~ L2[/"Rules: rules_"/] ~~~ L3[/"Workflow: flow_"/] ~~~ L4[/"Templates: tpl_"/] ~~~ L5[/"Checklists: chk_"/] ~~~ L5b[/"Scripts: *.py|*.sh"/]
             end
             subgraph LG2["过程产物（具体/项目输出）"]
                 direction LR
@@ -35,13 +35,13 @@ flowchart TB
         Role ~~~ Legend
     end
 
-    %% ==================== 初始化（仅执行一次） ====================
-    subgraph Init["🚀 初始化（一次性）"]
+    %% ==================== 项目初始化（仅执行一次） ====================
+    subgraph Init["🚀 项目初始化（部署核心框架文件）"]
         direction LR
-        I1["① 理解框架"]
+        I1["① 理解核心框架"]
         I_D1[/"README.md"/]
         I_D2[/"QUICK_START.md"/]
-        I2["② 部署项目"]
+        I2["② 部署到项目"]
         I_D3[/"deploy_project.sh"/]
         I_D1 --> I1
         I_D2 --> I1
@@ -93,7 +93,7 @@ flowchart TB
             P3_D1[/"rules_coding.md"/]
             P3_D2[/"flow_implement.md"/]
             P3_D6[/"chk_dev.md"/]
-            P3_O1[/"代码文件"/]
+            P3_O1[/"代码文件.cpp/.hpp"/]
             P3_M["② L5 测试"]
             P3_D3[/"tpl_testcase.md"/]
             P3_O2[/"TC_*.md"/]

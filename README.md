@@ -120,26 +120,11 @@ archpilot_core/
 
 ## 🚀 快速开始
 
-### 步骤 1：复制框架到目标项目
-
-```bash
-cp -r archpilot_core/ /path/to/your/project/
-```
-
-### 步骤 2：定制化配置
-
-1. 修改 `Governance/ARCHITECTURE_DEFINITION.md` 中的目录路径
-2. 根据项目需求调整 `Governance/rules/` 下的规则文件
-3. 补充项目特定的术语到 `Governance/GLOSSARY.md`
-
-### 步骤 3：配置 AI Agent
-
-1. 将 `Agents/agent_dev_main.md` 配置为项目的主开发 Agent
-2. 根据需要启用其他专项 Agent
-
-### 步骤 4：开始开发
-
-AI 将根据配置的规则自动执行任务，并保障质量标准。
+详见 **[快速开始指南](QUICK_START.md)**，包含：
+- 一键部署脚本使用方法
+- 手动部署步骤
+- 定制化配置指引
+- AI Agent 配置方法
 
 ---
 

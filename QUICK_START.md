@@ -203,16 +203,14 @@ my_project/
 
 ### 配置子系统
 
-在 `Governance/ARCHITECTURE_DEFINITION.md` 中定义项目的子系统：
+在 `Governance/ARCHITECTURE_DEFINITION.md` 的 **Section 4** 中定义项目的子系统。
 
-```markdown
-| 子系统 | 缩写 | 职责 |
-|--------|------|------|
-| 核心功能 | core | 核心业务逻辑 |
-| 数据管理 | data | 数据存储与处理 |
-| 用户界面 | ui | 用户交互界面 |
-| 工具集 | util | 通用工具和辅助功能 |
-```
+> 详见 [ARCHITECTURE_DEFINITION.md - 子系统定义](Governance/ARCHITECTURE_DEFINITION.md#4-子系统定义项目定制)
+
+**配置要点**：
+- 定义子系统名称、缩写、职责范围
+- 遵循高内聚、低耦合原则
+- 缩写用于文件命名前缀（如 `FR_core_001`）
 
 ### 配置命名前缀
 

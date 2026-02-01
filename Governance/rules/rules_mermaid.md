@@ -46,7 +46,7 @@ linkStyle default stroke:#000,stroke-width:2px
 
 | 文档类型 | 前缀 | 背景色 | 边框色 | 色系 | 示例 |
 |----------|------|--------|--------|------|------|
-| **Entry 入口** | 无前缀 | `#f3e5f5` 淡紫 | `#8e24aa` 紫 | 冷紫 | README.md, QUICK_START.md |
+| **Entry 入口** | UPPER_CASE | `#f3e5f5` 淡紫 | `#8e24aa` 紫 | 冷紫 | README.md, QUICK_START.md |
 | **Rules 规则** | `rules_` | `#fce4ec` 淡粉 | `#c2185b` 玫红 | 冷粉 | rules_naming.md, rules_coding.md |
 | **Workflow 工作流** | `flow_` | `#e0f2f1` 青绿浅 | `#00897b` 青绿 | 冷青 | flow_planning.md, flow_release.md |
 | **Templates 模板** | `tpl_` | `#eceff1` 蓝灰 | `#546e7a` 灰蓝 | 冷灰 | tpl_requirement.md, tpl_design.md |

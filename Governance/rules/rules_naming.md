@@ -26,7 +26,7 @@ Core 文件是 ArchPilot 框架的核心组成部分，按类型使用统一前�
 
 | 类型 | 前缀 | 示例 | 说明 |
 |------|------|------|------|
-| **Entry 入口** | 无前缀 | `README.md`, `QUICK_START.md` | 项目入口文件，大写命名 |
+| **Entry 入口** | UPPER_CASE | `README.md`, `QUICK_START.md` | 全大写命名，业界规范入口文件 |
 | **Rules 规则** | `rules_` | `rules_naming.md`, `rules_coding.md` | 约束和规范文件 |
 | **Workflow 工作流** | `flow_` | `flow_planning.md`, `flow_release.md` | 工作流程定义 |
 | **Templates 模板** | `tpl_` | `tpl_requirement.md`, `tpl_design.md` | 文档模板 |
