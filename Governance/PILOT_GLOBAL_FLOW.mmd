@@ -14,13 +14,19 @@ flowchart TB
     %% ==================== 图例（文档维度颜色） ====================
     subgraph Legend["📚 文档链/过程产物"]
         direction LR
-        L1[/"Entry 入口"/]
-        L2[/"Rules 规则"/]
-        L3[/"Workflow 工作流"/]
-        L4[/"Templates 模板"/]
-        L5[/"Scripts 脚本"/]
-        L6[/"Output 产出"/]
-        L1 ~~~ L2 ~~~ L3 ~~~ L4 ~~~ L5 ~~~ L6
+        subgraph LG1["Core文件(冷色)"]
+            direction LR
+            L1[/"Entry 入口"/]
+            L2[/"Rules 规则"/]
+            L3[/"Workflow 工作流"/]
+            L4[/"Templates 模板"/]
+            L5[/"Scripts 脚本"/]
+        end
+        subgraph LG2["过程产物(暖色)"]
+            direction LR
+            L6[/"Output 产出"/]
+        end
+        LG1 ~~~ LG2
     end
 
     %% ==================== 初始化（仅执行一次） ====================
@@ -153,16 +159,19 @@ flowchart TB
     classDef frameStyle fill:#fafafa,stroke:#424242,stroke-width:2px,color:#000
     classDef stepStyle fill:#fff,stroke:#424242,stroke-width:2px,color:#000
 
-    %% 文档维度颜色（仅用于文档节点）
-    classDef entryStyle fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
-    classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
-    classDef workflowStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
-    classDef tplStyle fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
-    classDef scriptStyle fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
-    classDef outputStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#000
+    %% Core 文件颜色（低饱和度冷色调 - 稳定/低频变更）
+    classDef entryStyle fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#000
+    classDef ruleStyle fill:#e8eaf6,stroke:#5c6bc0,stroke-width:2px,color:#000
+    classDef workflowStyle fill:#e0f2f1,stroke:#26a69a,stroke-width:2px,color:#000
+    classDef tplStyle fill:#e3f2fd,stroke:#42a5f5,stroke-width:2px,color:#000
+    classDef scriptStyle fill:#ede7f6,stroke:#7e57c2,stroke-width:2px,color:#000
+
+    %% 过程产物颜色（高饱和度暖色调 - 项目输出/高频变更）
+    classDef outputStyle fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef outputHighStyle fill:#ffccbc,stroke:#ff5722,stroke-width:2px,color:#000
 
     %% 应用样式 - 所有大框统一
-    class Role,Legend,Init,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
+    class Role,Legend,LG1,LG2,Init,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
     class P1_S,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
     class AI_P1,AI_P2,AI_P3 stepStyle
     class R1,R2,R3,R4 stepStyle
@@ -201,7 +210,8 @@ flowchart TB
     class P4_D3 scriptStyle
     class P4_D4 outputStyle
 
-    %% AI Pilot: 输入(Agents=规则色, Prompts=模板色) + 输出(产出色)
+    %% AI Pilot: 输入(Core文件) + 输出(过程产物-高饱和暖色)
     class AI_D1,AI_D2 ruleStyle
     class AI_D3,AI_D4 tplStyle
-    class AI_O1,AI_O2,AI_O3,AI_O4,AI_O5 outputStyle
+    class AI_O1,AI_O2,AI_O3 outputStyle
+    class AI_O4,AI_O5 outputHighStyle

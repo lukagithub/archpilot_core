@@ -35,40 +35,60 @@ linkStyle default stroke:#333,stroke-width:2px
 
 ### 2.2 文档/过程产物颜色
 
-颜色**仅用于文档节点**，区分不同类型的过程产物：
+颜色**仅用于文档节点**，区分不同类型的过程产物。
 
-| 文档类型 | 背景色 | 边框色 | 示例 |
-|----------|--------|--------|------|
-| **Entry 入口** | `#ffcdd2` 浅红 | `#c62828` 深红 | README.md, QUICK_START.md |
-| **Rules 规则** | `#fff9c4` 浅黄 | `#f57f17` 金色 | rules_*.md |
-| **Workflow 工作流** | `#c8e6c9` 浅绿 | `#2e7d32` 深绿 | flow_*.md |
-| **Templates 模板** | `#bbdefb` 浅蓝 | `#1565c0` 深蓝 | *_template.md |
-| **Scripts 脚本** | `#e1bee7` 浅紫 | `#7b1fa2` 深紫 | *.py, *.sh |
-| **Output 产出** | `#ffe0b2` 浅橙 | `#ef6c00` 深橙 | FR_*.md, SA_*.md, ReleaseNote/ |
+#### Core 文件（低饱和度冷色调）
+
+用于框架内稳定、低频变更的文件：
+
+| 文档类型 | 背景色 | 边框色 | 色系 | 示例 |
+|----------|--------|--------|------|------|
+| **Entry 入口** | `#eceff1` 蓝灰 | `#607d8b` 灰蓝 | 冷灰 | README.md, QUICK_START.md |
+| **Rules 规则** | `#e8eaf6` 靛蓝浅 | `#5c6bc0` 靛蓝 | 冷蓝 | rules_*.md |
+| **Workflow 工作流** | `#e0f2f1` 青绿浅 | `#26a69a` 青绿 | 冷青 | flow_*.md |
+| **Templates 模板** | `#e3f2fd` 蓝浅 | `#42a5f5` 蓝 | 冷蓝 | *_template.md |
+| **Scripts 脚本** | `#ede7f6` 紫浅 | `#7e57c2` 紫 | 冷紫 | *.py, *.sh |
 
 ```mermaid
-%% 文档节点颜色（按类型区分）
-classDef entryStyle fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
-classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
-classDef workflowStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
-classDef tplStyle fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
-classDef scriptStyle fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
-classDef outputStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#000
+%% Core 文件颜色（低饱和度冷色调）
+classDef entryStyle fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#000
+classDef ruleStyle fill:#e8eaf6,stroke:#5c6bc0,stroke-width:2px,color:#000
+classDef workflowStyle fill:#e0f2f1,stroke:#26a69a,stroke-width:2px,color:#000
+classDef tplStyle fill:#e3f2fd,stroke:#42a5f5,stroke-width:2px,color:#000
+classDef scriptStyle fill:#ede7f6,stroke:#7e57c2,stroke-width:2px,color:#000
+```
+
+#### 过程产物（高饱和度暖色调）
+
+用于具体项目输出、高频变更的文件：
+
+| 文档类型 | 背景色 | 边框色 | 色系 | 示例 |
+|----------|--------|--------|------|------|
+| **Output 产出** | `#fff3e0` 橙浅 | `#ff9800` 橙 | 暖橙 | FR_*.md, SA_*.md, DD_*.md |
+| **Output 高亮** | `#ffccbc` 深橙浅 | `#ff5722` 深橙 | 暖红橙 | 代码文件, TC-*.md |
+
+```mermaid
+%% 过程产物颜色（高饱和度暖色调）
+classDef outputStyle fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+classDef outputHighStyle fill:#ffccbc,stroke:#ff5722,stroke-width:2px,color:#000
 ```
 
 ### 2.3 配色原则
 
 1. **容器框统一**：所有 subgraph 使用相同的浅灰背景 `#fafafa`
 2. **颜色仅用于文档**：彩色仅用于标识文档/过程产物类型
-3. **高对比度**：背景色浅，边框色深，确保清晰可见
-4. **文字黑色**：始终使用 `color:#000`，确保可读性
-5. **语义化配色**：
-   - 红色系 → 入口文档（起点）
-   - 黄色系 → 规则文档（约束）
-   - 绿色系 → 工作流文档（流程）
+3. **冷暖色调区分**：
+   - **冷色调（低饱和）**→ Core 文件：稳定、低频变更、框架层
+   - **暖色调（高饱和）**→ 过程产物：项目输出、高频变更、业务层
+4. **高对比度**：背景色浅，边框色深，确保清晰可见
+5. **文字黑色**：始终使用 `color:#000`，确保可读性
+6. **语义化配色**：
+   - 灰蓝系 → 入口文档（稳定起点）
+   - 靛蓝系 → 规则文档（约束）
+   - 青绿系 → 工作流文档（流程）
    - 蓝色系 → 模板文档（指导）
    - 紫色系 → 脚本工具（自动化）
-   - 橙色系 → 产出文档（结果）
+   - 橙色系 → 产出文档（结果/变更）
 
 ### 2.4 旧版色板（已废弃）
 
