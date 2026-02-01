@@ -10,13 +10,11 @@
 ### 1. 环境要求
 
 - Git（版本管理）
+- Bash（Linux/macOS/WSL/Git Bash）
 - Python 3.8+（脚本执行）
-- Docker（推荐，用于隔离构建和测试环境）
 - AI 助手（如 GitHub Copilot、CodeBuddy、Cursor 等）
 
 ### 2. 理解核心概念
-
-在开始之前，请确保理解以下核心概念：
 
 | 概念 | 说明 |
 |------|------|
@@ -27,7 +25,64 @@
 
 ---
 
-## 🚀 5 分钟快速启动
+## 🚀 一键部署（推荐）
+
+### 方式一：使用部署脚本
+
+```bash
+# 进入 ArchPilot Core 目录
+cd archpilot_core
+
+# 基本用法：创建新项目
+./Scripts/deploy_project.sh my_project
+
+# 指定目标路径
+./Scripts/deploy_project.sh my_project /path/to/workspace
+
+# 完整模式 + Git 初始化
+./Scripts/deploy_project.sh my_project /path/to -f -i
+
+# 最小模式（仅核心文件）
+./Scripts/deploy_project.sh my_project . -m
+```
+
+### 部署模式说明
+
+| 模式 | 参数 | 包含内容 |
+|------|------|----------|
+| **标准模式** | （默认） | Governance + Agents + Guides + Prompts + Scripts |
+| **完整模式** | `-f` | 标准模式 + 所有模板和示例 |
+| **最小模式** | `-m` | 仅 Governance + Agents（最小可用） |
+
+### 常用选项
+
+| 选项 | 说明 |
+|------|------|
+| `-i, --init-git` | 初始化 Git 仓库并完成首次提交 |
+| `-f, --full` | 完整模式 |
+| `-m, --minimal` | 最小模式 |
+| `--no-prompts` | 不复制 Prompts 目录 |
+| `--no-scripts` | 不复制 Scripts 目录 |
+| `-h, --help` | 显示帮助 |
+
+### 部署完成后
+
+```bash
+# 进入新项目目录
+cd my_project
+
+# 查看项目结构
+ls -la
+
+# 开始使用
+cat README.md
+```
+
+---
+
+## 📦 手动部署（备选）
+
+如果不使用部署脚本，可以手动复制：
 
 ### 步骤 1：初始化项目结构
 
