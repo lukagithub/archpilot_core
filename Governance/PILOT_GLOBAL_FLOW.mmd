@@ -102,7 +102,36 @@ flowchart TB
     %% ==================== AI Pilot 协作（底部） ====================
     subgraph AI_Pilot["🤖 AI Pilot 协作"]
         direction LR
-        AI_IN["Agents/ + Prompts/"] --> AI_PROC["System + User Prompt"] --> AI_OUT["AI执行 → 人工确认"]
+
+        subgraph AI_IN["输入"]
+            direction TB
+            AI_D1[/"agent_dev_main.md"/]
+            AI_D2[/"agent_release.md"/]
+            AI_D3[/"system_prompt_core.md"/]
+            AI_D4[/"user_prompt_*.md"/]
+            AI_D1 & AI_D2 --- AI_D3
+            AI_D3 --- AI_D4
+        end
+
+        subgraph AI_PROC["处理"]
+            direction TB
+            AI_P1["加载 System Prompt"]
+            AI_P2["加载 User Prompt"]
+            AI_P3["AI 执行任务"]
+            AI_P1 --- AI_P2 --- AI_P3
+        end
+
+        subgraph AI_OUT["输出"]
+            direction TB
+            AI_O1[/"FR_*.md 需求文档"/]
+            AI_O2[/"SA_*.md 架构文档"/]
+            AI_O3[/"DD_*.md 设计文档"/]
+            AI_O4[/"代码文件"/]
+            AI_O5[/"TC-*.md 测试用例"/]
+            AI_O1 --- AI_O2 --- AI_O3 --- AI_O4 --- AI_O5
+        end
+
+        AI_IN ==> AI_PROC ==> AI_OUT
     end
 
     %% ==================== 层级连接 ====================
@@ -162,3 +191,8 @@ flowchart TB
     class P4_D2 workflowStyle
     class P4_D3 scriptStyle
     class P4_D4 outputStyle
+
+    %% AI Pilot: 输入(Agents=规则色, Prompts=模板色) + 输出(产出色)
+    class AI_D1,AI_D2 ruleStyle
+    class AI_D3,AI_D4 tplStyle
+    class AI_O1,AI_O2,AI_O3,AI_O4,AI_O5 outputStyle
