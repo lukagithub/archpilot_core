@@ -145,23 +145,24 @@ create_directories() {
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
-    # 创建核心目录
-    mkdir -p "$project_path"/{Governance/{rules,checklists,templates},Agents,Guides}
+    # 创建 archpilot 核心框架目录（通用、稳定、不变）
+    mkdir -p "$project_path"/archpilot/{Governance/{rules,checklists,templates},Agents,Guides}
 
-    # L1-L5 目录
+    # 创建项目根目录的定制化开发区（L1-L5 架构层）
     mkdir -p "$project_path"/{L1_Requirements,L2_Architecture,L3_DetailDesign}
     mkdir -p "$project_path"/L4_Implementation/src
     mkdir -p "$project_path"/L5_Verification/{unit,integration}
 
-    # 其他目录
+    # 其他项目文件
     mkdir -p "$project_path"/ReleaseNote
 
+    # 可选目录（根据模式）
     if [[ "$MODE" != "minimal" ]]; then
         if [[ "$COPY_PROMPTS" == true ]]; then
-            mkdir -p "$project_path"/Prompts
+            mkdir -p "$project_path"/archpilot/Prompts
         fi
         if [[ "$COPY_SCRIPTS" == true ]]; then
-            mkdir -p "$project_path"/Scripts
+            mkdir -p "$project_path"/archpilot/Scripts
         fi
     fi
 
@@ -170,46 +171,47 @@ create_directories() {
 
 # ============ 复制核心文件 ============
 copy_core_files() {
-    log_step "复制核心治理文件..."
+    log_step "复制核心治理文件到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
-    # 核心定义文件
-    cp "$CORE_ROOT/Governance/GOVERNANCE_OVERVIEW.md" "$project_path/Governance/"
-    cp "$CORE_ROOT/Governance/ARCHITECTURE_DEFINITION.md" "$project_path/Governance/"
-    cp "$CORE_ROOT/Governance/GLOSSARY.md" "$project_path/Governance/"
-    cp "$CORE_ROOT/Governance/DOCUMENT_DEPENDENCY.mmd" "$project_path/Governance/"
+    # 核心定义文件 → archpilot/Governance/
+    cp "$CORE_ROOT/Governance/GOVERNANCE_OVERVIEW.md" "$project_path/archpilot/Governance/"
+    cp "$CORE_ROOT/Governance/ARCHITECTURE_DEFINITION.md" "$project_path/archpilot/Governance/"
+    cp "$CORE_ROOT/Governance/GLOSSARY.md" "$project_path/archpilot/Governance/"
+    cp "$CORE_ROOT/Governance/DOCUMENT_DEPENDENCY.mmd" "$project_path/archpilot/Governance/"
+    cp "$CORE_ROOT/Governance/DEPLOYMENT_FLOW.mmd" "$project_path/archpilot/Governance/"
 
     # 规则文件
-    cp "$CORE_ROOT/Governance/rules/"*.md "$project_path/Governance/rules/"
+    cp "$CORE_ROOT/Governance/rules/"*.md "$project_path/archpilot/Governance/rules/"
 
     # 检查清单
-    cp "$CORE_ROOT/Governance/checklists/"*.md "$project_path/Governance/checklists/"
+    cp "$CORE_ROOT/Governance/checklists/"*.md "$project_path/archpilot/Governance/checklists/"
 
     # 模板文件
-    cp "$CORE_ROOT/Governance/templates/"*.md "$project_path/Governance/templates/"
+    cp "$CORE_ROOT/Governance/templates/"*.md "$project_path/archpilot/Governance/templates/"
 
     log_done "核心文件复制完成"
 }
 
 # ============ 复制 Agent 文件 ============
 copy_agent_files() {
-    log_step "复制 Agent 定义文件..."
+    log_step "复制 Agent 定义文件到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
-    cp "$CORE_ROOT/Agents/"*.md "$project_path/Agents/"
+    cp "$CORE_ROOT/Agents/"*.md "$project_path/archpilot/Agents/"
 
     log_done "Agent 文件复制完成"
 }
 
 # ============ 复制指南文件 ============
 copy_guide_files() {
-    log_step "复制 AI 指南文件..."
+    log_step "复制 AI 指南文件到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
-    cp "$CORE_ROOT/Guides/"*.md "$project_path/Guides/"
+    cp "$CORE_ROOT/Guides/"*.md "$project_path/archpilot/Guides/"
 
     log_done "指南文件复制完成"
 }
@@ -220,12 +222,12 @@ copy_prompt_files() {
         return
     fi
 
-    log_step "复制 Prompts 文件..."
+    log_step "复制 Prompts 文件到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
     if [[ -d "$CORE_ROOT/Prompts" ]]; then
-        cp "$CORE_ROOT/Prompts/"*.md "$project_path/Prompts/" 2>/dev/null || true
+        cp "$CORE_ROOT/Prompts/"*.md "$project_path/archpilot/Prompts/" 2>/dev/null || true
     fi
 
     log_done "Prompts 文件复制完成"
@@ -237,12 +239,12 @@ copy_script_files() {
         return
     fi
 
-    log_step "复制脚本模板..."
+    log_step "复制脚本模板到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
-    cp "$CORE_ROOT/Scripts/"*.py "$project_path/Scripts/" 2>/dev/null || true
-    cp "$CORE_ROOT/Scripts/README.md" "$project_path/Scripts/" 2>/dev/null || true
+    cp "$CORE_ROOT/Scripts/"*.py "$project_path/archpilot/Scripts/" 2>/dev/null || true
+    cp "$CORE_ROOT/Scripts/README.md" "$project_path/archpilot/Scripts/" 2>/dev/null || true
 
     log_done "脚本文件复制完成"
 }
@@ -273,20 +275,31 @@ generate_readme() {
 
 \`\`\`
 ${PROJECT_NAME}/
-├── Governance/              # 治理规则
-│   ├── rules/              # 规则文件
-│   ├── checklists/         # 检查清单
-│   └── templates/          # 文档模板
-├── Agents/                  # AI Agent 配置
-├── Guides/                  # AI 操作指南
-├── L1_Requirements/         # L1 需求层
+├── archpilot/               # 核心框架层（通用、稳定、不变）
+│   ├── Governance/         # 治理规则
+│   │   ├── rules/          # 规则文件
+│   │   ├── checklists/     # 检查清单
+│   │   └── templates/      # 文档模板
+│   ├── Agents/             # AI Agent 配置
+│   ├── Guides/             # AI 操作指南
+│   ├── Prompts/            # Prompt 模板（标准/完整模式）
+│   └── Scripts/            # 脚本工具（标准/完整模式）
+│
+├── L1_Requirements/         # L1 需求层（定制化开发区）
 ├── L2_Architecture/         # L2 架构层
 ├── L3_DetailDesign/         # L3 设计层
 ├── L4_Implementation/       # L4 实现层
 ├── L5_Verification/         # L5 验证层
 ├── ReleaseNote/            # 发布说明
-└── VERSION                  # 版本文件
+├── VERSION                  # 版本文件
+├── .gitignore              # Git 忽略配置
+└── README.md               # 本文件
 \`\`\`
+
+**目录说明**：
+- **archpilot/**：继承自 ArchPilot Core 的通用框架，保持稳定不变
+- **L1-L5/**：项目特定的开发内容，根据需求定制化开发
+- **根目录文件**：项目配置和说明文件
 
 ---
 
@@ -295,12 +308,12 @@ ${PROJECT_NAME}/
 ### 1. 创建第一个需求文档
 
 \`\`\`bash
-cp Governance/templates/requirement_template.md L1_Requirements/FR_core_001_[描述].md
+cp archpilot/Governance/templates/requirement_template.md L1_Requirements/FR_core_001_[描述].md
 \`\`\`
 
 ### 2. 配置 AI Agent
 
-将 \`Agents/agent_dev_main.md\` 配置到你的 AI 开发环境。
+将 \`archpilot/Agents/agent_dev_main.md\` 配置到你的 AI 开发环境。
 
 ### 3. 开始开发
 
@@ -310,9 +323,10 @@ cp Governance/templates/requirement_template.md L1_Requirements/FR_core_001_[描
 
 ## 📖 相关文档
 
-- [治理总览](Governance/GOVERNANCE_OVERVIEW.md)
-- [架构定义](Governance/ARCHITECTURE_DEFINITION.md)
-- [AI 开发指南](Guides/AI_Development_Guide.md)
+- [治理总览](archpilot/Governance/GOVERNANCE_OVERVIEW.md)
+- [架构定义](archpilot/Governance/ARCHITECTURE_DEFINITION.md)
+- [AI 开发指南](archpilot/Guides/AI_Development_Guide.md)
+- [Prompt 策略](archpilot/Governance/PROMPT_STRATEGY.md)
 
 ---
 
@@ -325,6 +339,73 @@ cp Governance/templates/requirement_template.md L1_Requirements/FR_core_001_[描
 EOF
 
     log_done "README 生成完成"
+}
+
+# ============ 生成 archpilot README ============
+generate_archpilot_readme() {
+    log_step "生成 archpilot/README.md..."
+
+    local project_path="$TARGET_DIR/$PROJECT_NAME"
+
+    cat > "$project_path/archpilot/README.md" << 'EOF'
+# ArchPilot 核心框架层
+
+> 本目录包含从 ArchPilot Core 继承的通用框架，保持稳定不变。
+
+---
+
+## 📋 目录说明
+
+| 目录 | 说明 | 特性 |
+|------|------|------|
+| **Governance/** | 治理规则、检查清单、模板 | 通用、稳定 |
+| **Agents/** | AI Agent 定义 | 可复用 |
+| **Guides/** | AI 操作指南 | 参考文档 |
+| **Prompts/** | System/User Prompt 模板 | 可定制 |
+| **Scripts/** | 自动化脚本模板 | 工具集 |
+
+---
+
+## ⚠️ 使用说明
+
+### 不应修改
+- `Governance/` 下的核心定义和规则文件
+- `Agents/` 下的基础 Agent 定义
+
+### 可以定制
+- 项目特定的子系统定义
+- 项目特定的术语补充
+- Prompt 模板的微调
+
+### 建议做法
+1. **引用而非修改**：在项目根目录引用 archpilot/ 中的规则
+2. **扩展而非替换**：需要定制时，在项目根目录创建扩展文件
+3. **版本追踪**：记录使用的 ArchPilot Core 版本
+
+---
+
+## 📖 核心文档
+
+- [治理总览](Governance/GOVERNANCE_OVERVIEW.md)
+- [L1-L5 架构定义](Governance/ARCHITECTURE_DEFINITION.md)
+- [术语标准表](Governance/GLOSSARY.md)
+- [Prompt 策略](Governance/PROMPT_STRATEGY.md)
+
+---
+
+## 🔄 框架更新
+
+当 ArchPilot Core 有新版本时，可以：
+
+1. 备份当前 `archpilot/` 目录
+2. 用新版本替换（如果没有自定义修改）
+3. 合并自定义修改（如果有）
+
+建议：在项目根目录记录使用的框架版本号。
+
+EOF
+
+    log_done "archpilot/README.md 生成完成"
 }
 
 # ============ 生成 VERSION 文件 ============
@@ -412,10 +493,10 @@ update_project_paths() {
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
     # 更新 ARCHITECTURE_DEFINITION.md 中的项目名
-    if [[ -f "$project_path/Governance/ARCHITECTURE_DEFINITION.md" ]]; then
+    if [[ -f "$project_path/archpilot/Governance/ARCHITECTURE_DEFINITION.md" ]]; then
         sed -i.bak "s/基于 ArchPilot Core 框架的所有项目/${PROJECT_NAME} 项目/g" \
-            "$project_path/Governance/ARCHITECTURE_DEFINITION.md"
-        rm -f "$project_path/Governance/ARCHITECTURE_DEFINITION.md.bak"
+            "$project_path/archpilot/Governance/ARCHITECTURE_DEFINITION.md"
+        rm -f "$project_path/archpilot/Governance/ARCHITECTURE_DEFINITION.md.bak"
     fi
 
     log_done "项目配置更新完成"
@@ -444,7 +525,7 @@ show_completion() {
     echo -e "     ${BLUE}cat README.md${NC}"
     echo ""
     echo -e "  3. 创建第一个需求文档:"
-    echo -e "     ${BLUE}cp Governance/templates/requirement_template.md L1_Requirements/FR_core_001_xxx.md${NC}"
+    echo -e "     ${BLUE}cp archpilot/Governance/templates/requirement_template.md L1_Requirements/FR_core_001_xxx.md${NC}"
     echo ""
     echo -e "  4. 配置 AI Agent 并开始开发"
     echo ""
@@ -487,6 +568,7 @@ main() {
     copy_prompt_files
     copy_script_files
     generate_readme
+    generate_archpilot_readme
     generate_version
     generate_gitignore
     update_project_paths
