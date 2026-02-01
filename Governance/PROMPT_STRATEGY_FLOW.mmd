@@ -1,0 +1,55 @@
+%% ========================================
+%% AI Prompt 分层策略图
+%% 说明：展示如何将文档转化为 AI 的 System/User Prompt
+%% ========================================
+
+graph TB
+    subgraph System_Prompt["System Prompt（始终加载）"]
+        direction TB
+        SP_L0["Layer 0: 角色定义"]
+        SP_L1["Layer 1: 核心约束"]
+
+        SP_L0 --- O[agent_dev_main.md]
+        SP_L0 --- P[agent_release.md]
+        SP_L1 --- D[rules_agent.md]
+        SP_L1 --- B["ARCHITECTURE_DEFINITION.md<br/>（精简版）"]
+        SP_L1 --- C["GLOSSARY.md<br/>（精简版）"]
+    end
+
+    subgraph User_Prompt["User Prompt（按需加载）"]
+        direction TB
+        UP_L2["Layer 2: 任务规则"]
+        UP_L3["Layer 3: 检查与模板"]
+
+        UP_L2 --- E[rules_coding.md]
+        UP_L2 --- F[rules_naming.md]
+        UP_L2 --- G[rules_scripts.md]
+        UP_L2 --- H[rules_release.md]
+        UP_L2 --- I[rules_tag.md]
+        UP_L2 --- J[rules_testcases.md]
+
+        UP_L3 --- K[dev_checklist.md]
+        UP_L3 --- L[release_checklist.md]
+        UP_L3 --- T[templates/*]
+    end
+
+    subgraph Reference["参考文档（不直接作为 Prompt）"]
+        M[AI_Development_Guide.md]
+        N[AI_Release_Automation_Guide.md]
+        A[GOVERNANCE_OVERVIEW.md]
+    end
+
+    %% Prompt 层级关系
+    System_Prompt --> User_Prompt
+    User_Prompt -.-> Reference
+
+    %% 样式定义
+    classDef systemStyle fill:#bbdefb,stroke:#1565c0,stroke-width:3px,color:#000
+    classDef userStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef refStyle fill:#e0e0e0,stroke:#616161,stroke-width:2px,color:#000
+    classDef layerStyle fill:#e8eaf6,stroke:#3f51b5,stroke-width:1px,color:#000
+
+    class System_Prompt systemStyle
+    class User_Prompt userStyle
+    class Reference refStyle
+    class SP_L0,SP_L1,UP_L2,UP_L3 layerStyle

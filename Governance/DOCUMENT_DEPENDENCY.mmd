@@ -3,6 +3,7 @@
 
 %% ========================================
 %% 文档依赖关系图
+%% 说明：展示 Governance 目录下文档的依赖关系
 %% ========================================
 
 graph TD
@@ -20,18 +21,19 @@ graph TD
         H[rules_release.md]
         I[rules_tag.md]
         J[rules_testcases.md]
+        K[rules_mermaid.md]
     end
 
     subgraph 检查执行层
-        K[dev_checklist.md]
-        L[release_checklist.md]
+        L[dev_checklist.md]
+        M[release_checklist.md]
     end
 
     subgraph 自动化执行层
-        M[AI_Development_Guide.md]
-        N[AI_Release_Automation_Guide.md]
-        O[agent_dev_main.md]
-        P[agent_release.md]
+        N[AI_Development_Guide.md]
+        O[AI_Release_Automation_Guide.md]
+        P[agent_dev_main.md]
+        Q[agent_release.md]
     end
 
     %% 核心定义层依赖
@@ -50,96 +52,34 @@ graph TD
     C --> E
     C --> F
 
+    %% Mermaid 规则独立
+    K
+
     %% 检查层依赖规则层
-    E --> K
-    F --> K
-    J --> K
-    H --> L
-    I --> L
+    E --> L
+    F --> L
+    J --> L
+    H --> M
+    I --> M
 
     %% 自动化层依赖
-    A --> M
     A --> N
-    D --> O
-    E --> O
-    F --> O
-    H --> P
-    I --> P
-    K --> M
+    A --> O
+    D --> P
+    E --> P
+    F --> P
+    H --> Q
+    I --> Q
     L --> N
+    M --> O
 
-%% ========================================
-%% AI Prompt 分层策略图
-%% 说明：将文档转化为 AI 的 System/User Prompt
-%% ========================================
+    %% 样式定义
+    classDef coreStyle fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef checkStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef autoStyle fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px,color:#000
 
-graph TB
-    subgraph System_Prompt["System Prompt（始终加载）"]
-        direction TB
-        SP_L0["Layer 0: 角色定义"]
-        SP_L1["Layer 1: 核心约束"]
-
-        SP_L0 --- O2[agent_dev_main.md]
-        SP_L0 --- P2[agent_release.md]
-        SP_L1 --- D2[rules_agent.md]
-        SP_L1 --- B2["ARCHITECTURE_DEFINITION.md（精简）"]
-        SP_L1 --- C2["GLOSSARY.md（精简）"]
-    end
-
-    subgraph User_Prompt["User Prompt（按需加载）"]
-        direction TB
-        UP_L2["Layer 2: 任务规则"]
-        UP_L3["Layer 3: 检查与模板"]
-
-        UP_L2 --- E2[rules_coding.md]
-        UP_L2 --- F2[rules_naming.md]
-        UP_L2 --- G2[rules_scripts.md]
-        UP_L2 --- H2[rules_release.md]
-        UP_L2 --- I2[rules_tag.md]
-        UP_L2 --- J2[rules_testcases.md]
-
-        UP_L3 --- K2[dev_checklist.md]
-        UP_L3 --- L2[release_checklist.md]
-        UP_L3 --- T2[templates/*]
-    end
-
-    subgraph Reference["参考文档（不直接作为 Prompt）"]
-        M2[AI_Development_Guide.md]
-        N2[AI_Release_Automation_Guide.md]
-        A2[GOVERNANCE_OVERVIEW.md]
-    end
-
-    %% Prompt 层级关系
-    System_Prompt --> User_Prompt
-    User_Prompt -.-> Reference
-
-%% ========================================
-%% 任务类型与规则加载映射
-%% ========================================
-
-graph LR
-    subgraph 任务类型
-        T1[创建文档]
-        T2[编写代码]
-        T3[编写脚本]
-        T4[编写测试]
-        T5[版本发布]
-        T6[质量检查]
-    end
-
-    subgraph 需加载的User_Prompt
-        R1[rules_naming.md + template]
-        R2[rules_coding.md + rules_naming.md]
-        R3[rules_scripts.md]
-        R4[rules_testcases.md + template]
-        R5[rules_release.md + rules_tag.md]
-        R6[dev_checklist.md / release_checklist.md]
-    end
-
-    T1 --> R1
-    T2 --> R2
-    T3 --> R3
-    T4 --> R4
-    T5 --> R5
-    T6 --> R6
-
+    class A,B,C coreStyle
+    class D,E,F,G,H,I,J,K ruleStyle
+    class L,M checkStyle
+    class N,O,P,Q autoStyle

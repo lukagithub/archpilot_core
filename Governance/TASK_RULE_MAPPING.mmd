@@ -1,0 +1,39 @@
+%% ========================================
+%% 任务类型与规则加载映射图
+%% 说明：展示不同任务类型需要加载哪些规则和模板
+%% ========================================
+
+graph LR
+    subgraph 任务类型
+        direction TB
+        T1["📝 创建文档"]
+        T2["💻 编写代码"]
+        T3["🔧 编写脚本"]
+        T4["🧪 编写测试"]
+        T5["🚀 版本发布"]
+        T6["✅ 质量检查"]
+    end
+
+    subgraph 需加载的User_Prompt
+        direction TB
+        R1["rules_naming.md<br/>+ template"]
+        R2["rules_coding.md<br/>+ rules_naming.md"]
+        R3["rules_scripts.md"]
+        R4["rules_testcases.md<br/>+ template"]
+        R5["rules_release.md<br/>+ rules_tag.md"]
+        R6["dev_checklist.md<br/>release_checklist.md"]
+    end
+
+    T1 --> R1
+    T2 --> R2
+    T3 --> R3
+    T4 --> R4
+    T5 --> R5
+    T6 --> R6
+
+    %% 样式定义
+    classDef taskStyle fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px,color:#000
+    classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+
+    class T1,T2,T3,T4,T5,T6 taskStyle
+    class R1,R2,R3,R4,R5,R6 ruleStyle
