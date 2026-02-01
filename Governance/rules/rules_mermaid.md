@@ -14,9 +14,61 @@
 
 ## 2. 配色规范
 
-### 2.1 标准色板
+### 2.1 容器框统一背景色
 
-基于 Material Design 配色系统，使用柔和、高对比度的颜色组合。
+**重要原则**：所有大框（subgraph 容器）使用统一的浅灰色背景，避免颜色语言过于杂乱。
+
+| 用途 | 背景色 | 边框色 | 文字色 | 边框宽度 |
+|------|--------|--------|--------|----------|
+| **容器框（统一）** | `#fafafa` 浅灰 | `#616161` 灰色 | `#000` 黑色 | 2px |
+| **步骤节点** | `#ffffff` 白色 | `#616161` 灰色 | `#000` 黑色 | 2px |
+
+```mermaid
+%% 容器框和步骤节点样式（必须统一使用）
+classDef frameStyle fill:#fafafa,stroke:#616161,stroke-width:2px,color:#000
+classDef stepStyle fill:#fff,stroke:#616161,stroke-width:2px,color:#000
+```
+
+### 2.2 文档/过程产物颜色
+
+颜色**仅用于文档节点**，区分不同类型的过程产物：
+
+| 文档类型 | 背景色 | 边框色 | 示例 |
+|----------|--------|--------|------|
+| **Entry 入口** | `#ffcdd2` 浅红 | `#c62828` 深红 | README.md, QUICK_START.md |
+| **Rules 规则** | `#fff9c4` 浅黄 | `#f57f17` 金色 | rules_*.md |
+| **Workflow 工作流** | `#c8e6c9` 浅绿 | `#2e7d32` 深绿 | flow_*.md |
+| **Templates 模板** | `#bbdefb` 浅蓝 | `#1565c0` 深蓝 | *_template.md |
+| **Scripts 脚本** | `#e1bee7` 浅紫 | `#7b1fa2` 深紫 | *.py, *.sh |
+| **Output 产出** | `#ffe0b2` 浅橙 | `#ef6c00` 深橙 | FR_*.md, SA_*.md, ReleaseNote/ |
+
+```mermaid
+%% 文档节点颜色（按类型区分）
+classDef entryStyle fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+classDef workflowStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+classDef tplStyle fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+classDef scriptStyle fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
+classDef outputStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#000
+```
+
+### 2.3 配色原则
+
+1. **容器框统一**：所有 subgraph 使用相同的浅灰背景 `#fafafa`
+2. **颜色仅用于文档**：彩色仅用于标识文档/过程产物类型
+3. **高对比度**：背景色浅，边框色深，确保清晰可见
+4. **文字黑色**：始终使用 `color:#000`，确保可读性
+5. **语义化配色**：
+   - 红色系 → 入口文档（起点）
+   - 黄色系 → 规则文档（约束）
+   - 绿色系 → 工作流文档（流程）
+   - 蓝色系 → 模板文档（指导）
+   - 紫色系 → 脚本工具（自动化）
+   - 橙色系 → 产出文档（结果）
+
+### 2.4 旧版色板（已废弃）
+
+以下色板仅供参考，新图表请使用 2.1 和 2.2 的规范：
 
 | 用途 | 背景色 | 边框色 | 文字色 | 边框宽度 |
 |------|--------|--------|--------|----------|
@@ -28,32 +80,6 @@
 | **定制区** | `#b2dfdb` 青绿 | `#00695c` 深青 | `#000` 黑色 | 2px |
 | **架构阶段** | `#e8eaf6` 靛蓝浅 | `#3f51b5` 靛蓝 | `#000` 黑色 | 2px |
 | **实现阶段** | `#fce4ec` 粉红浅 | `#c2185b` 粉红深 | `#000` 黑色 | 2px |
-
-### 2.2 样式定义模板
-
-```mermaid
-classDef coreStyle fill:#bbdefb,stroke:#1565c0,stroke-width:3px,color:#000
-classDef deployStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:3px,color:#000
-classDef projectStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:3px,color:#000
-classDef workflowStyle fill:#e1bee7,stroke:#6a1b9a,stroke-width:3px,color:#000
-classDef archpilotStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
-classDef customStyle fill:#b2dfdb,stroke:#00695c,stroke-width:2px,color:#000
-classDef archStageStyle fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
-classDef implStageStyle fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
-```
-
-### 2.3 配色原则
-
-1. **高对比度**：背景色浅，边框色深，确保清晰可见
-2. **文字黑色**：始终使用 `color:#000`，确保可读性
-3. **语义化配色**：
-   - 蓝色系 → 框架/核心/稳定
-   - 橙色系 → 操作/部署/动作
-   - 绿色系 → 产出/项目/成功
-   - 紫色系 → 流程/工作流
-   - 黄色系 → 重点/核心层
-   - 青色系 → 开发/定制
-4. **层次区分**：主要区域 3px 边框，次要区域 2px 边框
 
 ---
 

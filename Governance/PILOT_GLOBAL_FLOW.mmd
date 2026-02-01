@@ -140,14 +140,11 @@ flowchart TB
     Phases --> AI_Pilot
 
     %% ==================== 样式定义 ====================
-    %% 框架样式
-    classDef roleStyle fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#000
-    classDef phaseStyle fill:#fafafa,stroke:#616161,stroke-width:2px,color:#000
-    classDef aiStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
-    classDef legendStyle fill:#fafafa,stroke:#bdbdbd,stroke-width:1px,color:#000
+    %% 框架样式（所有大框统一背景色）
+    classDef frameStyle fill:#fafafa,stroke:#616161,stroke-width:2px,color:#000
     classDef stepStyle fill:#fff,stroke:#616161,stroke-width:2px,color:#000
 
-    %% 文档维度颜色
+    %% 文档维度颜色（仅用于文档节点）
     classDef entryStyle fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
     classDef ruleStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
     classDef workflowStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
@@ -155,12 +152,10 @@ flowchart TB
     classDef scriptStyle fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
     classDef outputStyle fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#000
 
-    %% 应用样式
-    class Role roleStyle
-    class Phases,P1,P2,P3,P4 phaseStyle
-    class AI_Pilot aiStyle
-    class Legend legendStyle
+    %% 应用样式 - 所有大框统一
+    class Role,Legend,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
     class P1_S,P1_M,P1_E,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
+    class AI_P1,AI_P2,AI_P3 stepStyle
 
     %% 图例颜色
     class L1 entryStyle
