@@ -311,5 +311,5 @@ L4_Implementation/
 - `ARCHITECTURE_DEFINITION.md` - 架构权威定义
 - `rules_naming.md` - 命名规范（文件层面）
 - `rules_scripts.md` - 脚本规范
-- `../checklists/dev_checklist.md` - 开发检查清单
+- `../checklists/chk_dev.md` - 开发检查清单
 

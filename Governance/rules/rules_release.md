@@ -321,6 +321,6 @@ Phase 4: 正式发布
 - `ARCHITECTURE_DEFINITION.md` - 架构权威定义
 - `rules_tag.md` - Git Tag 详细规范
 - `rules_scripts.md` - 脚本执行规范
-- `../checklists/release_checklist.md` - 发布检查清单
+- `../checklists/chk_release.md` - 发布检查清单
 - `../Guides/AI_Release_Automation_Guide.md` - AI 发布自动化指南
 

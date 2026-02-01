@@ -105,7 +105,7 @@ my_project/
 │   │   ├── rules_release.md
 │   │   └── rules_testcases.md
 │   ├── checklists/
-│   │   └── dev_checklist.md
+│   │   └── chk_dev.md
 │   └── templates/
 ├── Agents/
 │   └── agent_dev_main.md

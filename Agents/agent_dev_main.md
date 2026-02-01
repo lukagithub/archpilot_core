@@ -34,7 +34,7 @@ enabled: true
 - `Governance/rules/rules_testcases.md` - 测试用例规范
 
 ### 优先级 3：检查清单
-- `Governance/checklists/dev_checklist.md` - 开发检查清单
+- `Governance/checklists/chk_dev.md` - 开发检查清单
 
 ## 执行流程
 

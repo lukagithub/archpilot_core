@@ -19,7 +19,7 @@
 | L1 需求 | `FR_[子系统]_[编号]_[描述].md` | `FR_core_001_user_auth.md` |
 | L2 架构 | `SA_[子系统]_[编号]_[描述].md` | `SA_core_001_auth_arch.md` |
 | L3 设计 | `DD_[子系统]_[编号]_[描述].md` | `DD_core_001_login_module.md` |
-| L5 测试 | `TC-[子系统]-[编号]-[类型]-[描述].md` | `TC-core-001-unit-login.md` |
+| L5 测试 | `TC_[子系统]_[编号]_[类型]_[描述].md` | `TC_core_001_unit_login.md` |
 
 ### 命名约束
 

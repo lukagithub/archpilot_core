@@ -13,18 +13,18 @@
 ### 1.1 格式
 
 ```
-TC-[subsystem]-[id]-[type]-[description].md
+TC_[subsystem]_[id]_[type]_[description].md
 ```
 
 ### 1.2 字段说明
 
 | 字段 | 规则 | 示例 |
 |------|------|------|
-| 前缀 | 固定为 `TC-` | `TC-` |
+| 前缀 | 固定为 `TC_` | `TC_` |
 | subsystem | 子系统缩写，全小写 | `core`, `data`, `ui` |
 | id | 三位数字，子系统内唯一 | `001`, `012`, `123` |
 | type | 测试类型 | `unit`, `integration`, `system` |
-| description | 短横线连接的小写描述 | `login-basic`, `data-sync` |
+| description | 下划线连接的小写描述 | `login_basic`, `data_sync` |
 
 ### 1.3 测试类型
 
@@ -38,10 +38,10 @@ TC-[subsystem]-[id]-[type]-[description].md
 
 ### 1.4 命名示例
 
-- `TC-core-001-unit-login-basic.md`
-- `TC-core-002-unit-auth-token.md`
-- `TC-data-001-integration-storage-sync.md`
-- `TC-ui-001-system-dashboard-load.md`
+- `TC_core_001_unit_login_basic.md`
+- `TC_core_002_unit_auth_token.md`
+- `TC_data_001_integration_storage_sync.md`
+- `TC_ui_001_system_dashboard_load.md`
 
 ---
 
@@ -53,7 +53,7 @@ TC-[subsystem]-[id]-[type]-[description].md
 
 ```yaml
 ---
-id: TC-core-001-unit-login-basic
+id: TC_core_001_unit_login_basic
 layer: L5
 type: unit
 subsystem: core
@@ -106,7 +106,7 @@ traces_from: [FR_core_001, FR_core_002, SA_core_001, DD_core_001]
 
 | 字段 | 说明 | 示例 |
 |------|------|------|
-| test_id | 测试用例 ID | `TC-core-001-unit-login-basic` |
+| test_id | 测试用例 ID | `TC_core_001_unit_login_basic` |
 | test_name | 测试名称（可读） | `Login Basic Test` |
 | subsystem | 所属子系统 | `core` |
 | test_type | 测试类型 | `unit` |
@@ -115,14 +115,14 @@ traces_from: [FR_core_001, FR_core_002, SA_core_001, DD_core_001]
 | executor | 执行者/环境 | `ci-job-123` |
 | artifact | 测试产出路径 | `/artifacts/logs/test.log` |
 | traces_from | 验证的文档 | `FR_core_001` |
-| verification_ids | 通过的用例编号 | `TC-core-001` |
+| verification_ids | 通过的用例编号 | `TC_core_001` |
 
 ### 4.2 CSV 格式示例
 
 ```csv
 timestamp,test_id,test_name,subsystem,test_type,status,executor,artifact,traces_from,verification_ids
-2026-02-01T10:30:00Z,TC-core-001-unit-login-basic,Login Basic,core,unit,passed,ci-job-123,/logs/test.log,FR_core_001,TC-core-001
-2026-02-01T10:31:00Z,TC-core-002-unit-auth-token,Auth Token,core,unit,failed,ci-job-123,/logs/test.log,FR_core_001,
+2026-02-01T10:30:00Z,TC_core_001_unit_login_basic,Login Basic,core,unit,passed,ci-job-123,/logs/test.log,FR_core_001,TC_core_001
+2026-02-01T10:31:00Z,TC_core_002_unit_auth_token,Auth Token,core,unit,failed,ci-job-123,/logs/test.log,FR_core_001,
 ```
 
 ### 4.3 JSON 格式示例
@@ -135,14 +135,14 @@ timestamp,test_id,test_name,subsystem,test_type,status,executor,artifact,traces_
   },
   "results": [
     {
-      "test_id": "TC-core-001-unit-login-basic",
+      "test_id": "TC_core_001_unit_login_basic",
       "test_name": "Login Basic",
       "subsystem": "core",
       "test_type": "unit",
       "status": "passed",
       "artifact": "/logs/test.log",
       "traces_from": ["FR_core_001"],
-      "verification_ids": ["TC-core-001"]
+      "verification_ids": ["TC_core_001"]
     }
   ],
   "summary": {
@@ -162,7 +162,7 @@ timestamp,test_id,test_name,subsystem,test_type,status,executor,artifact,traces_
 
 ```markdown
 ---
-id: TC-[subsystem]-[id]-[type]-[description]
+id: TC_[subsystem]_[id]_[type]_[description]
 layer: L5
 type: [unit|integration|system|performance|acceptance]
 subsystem: [子系统]
@@ -174,7 +174,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---
 
-# TC-[subsystem]-[id]-[type]-[description]
+# TC_[subsystem]_[id]_[type]_[description]
 
 ## 1. 测试目的
 
@@ -219,7 +219,7 @@ updated: YYYY-MM-DD
 
 ### 测试用例创建检查
 
-- [ ] 文件名符合 `TC-[subsystem]-[id]-[type]-[desc].md` 格式
+- [ ] 文件名符合 `TC_[subsystem]_[id]_[type]_[desc].md` 格式
 - [ ] YAML 元数据完整
 - [ ] id 与文件名一致
 - [ ] traces_from 列出被验证的文档
@@ -239,21 +239,21 @@ updated: YYYY-MM-DD
 
 ### 错误示例 1：分隔符错误
 
-❌ `TC_core_001_unit_login.md`  
-✅ `TC-core-001-unit-login.md`
+❌ `TC-core-001-unit-login.md`（使用中划线）  
+✅ `TC_core_001_unit_login.md`（使用下划线）
 
 ### 错误示例 2：ID 与文件名不一致
 
-文件名：`TC-core-001-unit-login.md`
+文件名：`TC_core_001_unit_login.md`
 
 ❌ YAML:
 ```yaml
-id: TC-core-01-unit-login
+id: TC_core_01_unit_login
 ```
 
 ✅ 修正:
 ```yaml
-id: TC-core-001-unit-login
+id: TC_core_001_unit_login
 ```
 
 ### 错误示例 3：缺少 traces_from
@@ -274,5 +274,5 @@ traces_from: [FR_core_001, DD_core_001]
 
 - `ARCHITECTURE_DEFINITION.md` - 架构权威定义
 - `rules_naming.md` - 命名规范
-- `../checklists/dev_checklist.md` - 开发检查清单
+- `../checklists/chk_dev.md` - 开发检查清单
 

@@ -172,7 +172,7 @@ L1 → L2 → L3 → L4 → L5
 - `GLOSSARY.md` - 术语标准表
 - `rules/rules_naming.md` - 命名规范
 - `rules/rules_coding.md` - 编码规范
-- `checklists/dev_checklist.md` - 开发检查清单
+- `checklists/chk_dev.md` - 开发检查清单
 
 ---
 

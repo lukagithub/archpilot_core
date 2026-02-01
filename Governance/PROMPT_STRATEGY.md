@@ -54,8 +54,8 @@
 │  └─────────────────────────────────────────────────────────┘   │
 │  ┌─────────────────────────────────────────────────────────┐   │
 │  │  Layer 3: 检查清单与模板                                  │   │
-│  │  • dev_checklist.md（开发检查时）                         │   │
-│  │  • release_checklist.md（发布检查时）                     │   │
+│  │  • chk_dev.md（开发检查时）                         │   │
+│  │  • chk_release.md（发布检查时）                     │   │
 │  │  • templates/*（创建文档时）                              │   │
 │  └─────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────┘
@@ -77,8 +77,8 @@
 | **rules_scripts.md** | User | P2-任务 | 脚本任务 | 脚本规范 |
 | **rules_tag.md** | User | P2-任务 | Tag 创建 | Tag 规范 |
 | **rules_testcases.md** | User | P2-任务 | 测试任务 | 测试用例规范 |
-| **dev_checklist.md** | User | P3-检查 | 检查任务 | 开发检查清单 |
-| **release_checklist.md** | User | P3-检查 | 发布检查 | 发布检查清单 |
+| **chk_dev.md** | User | P3-检查 | 检查任务 | 开发检查清单 |
+| **chk_release.md** | User | P3-检查 | 发布检查 | 发布检查清单 |
 | **templates/*** | User | P3-模板 | 创建文档 | 文档模板 |
 | **AI_Development_Guide.md** | 参考文档 | P4-指南 | 复杂任务 | 提示词库 |
 | **AI_Release_Automation_Guide.md** | 参考文档 | P4-指南 | 发布流程 | 发布指南 |
@@ -109,7 +109,7 @@
 | L2 | 架构层 | 定义如何组织 | SA_ |
 | L3 | 设计层 | 定义如何实现 | DD_ |
 | L4 | 实现层 | 编码实现 | - |
-| L5 | 验证层 | 测试验证 | TC- |
+| L5 | 验证层 | 测试验证 | TC_ |
 
 ## Part 4: 关键术语（来自 GLOSSARY.md 精简版）
 ### 规则等级
@@ -159,7 +159,7 @@
 | L2 | 架构设计 | L2_Architecture/ | SA_ |
 | L3 | 详细设计 | L3_DetailDesign/ | DD_ |
 | L4 | 代码实现 | L4_Implementation/ | - |
-| L5 | 测试验证 | L5_Verification/ | TC- |
+| L5 | 测试验证 | L5_Verification/ | TC_ |
 
 ### 3. 追溯关系（MUST）
 - 下层文档必须通过 traces_from 追溯到上层
@@ -199,8 +199,8 @@
 | 编写脚本 | rules_scripts.md | - |
 | 编写测试 | rules_testcases.md | tpl_testcase.md |
 | 版本发布 | rules_release.md, rules_tag.md | tpl_release_notes.md |
-| 质量检查 | dev_checklist.md | - |
-| 发布检查 | release_checklist.md | - |
+| 质量检查 | chk_dev.md | - |
+| 发布检查 | chk_release.md | - |
 
 ### 4.2 User Prompt 模板
 

@@ -80,7 +80,7 @@
 | 创建/命名文件 | `rules/rules_naming.md` |
 | 发布新版本 | `rules/rules_release.md`, `../Guides/AI_Release_Automation_Guide.md` |
 | 编写测试用例 | `rules/rules_testcases.md` |
-| 审计质量 | `checklists/dev_checklist.md` |
+| 审计质量 | `checklists/chk_dev.md` |
 
 ---
 

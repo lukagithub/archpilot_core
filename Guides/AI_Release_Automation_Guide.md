@@ -29,7 +29,7 @@
 | `Governance/ARCHITECTURE_DEFINITION.md` | 架构定义 | ✅ |
 | `Governance/rules/rules_release.md` | 发布规则 | ✅ |
 | `Governance/rules/rules_tag.md` | Tag 规范 | ✅ |
-| `Governance/checklists/dev_checklist.md` | 检查清单 | ✅ |
+| `Governance/checklists/chk_dev.md` | 检查清单 | ✅ |
 
 ### 2.2 环境检查
 
@@ -330,6 +330,6 @@ git show v{VERSION}
 - [治理总览](../Governance/GOVERNANCE_OVERVIEW.md)
 - [发布管理规则](../Governance/rules/rules_release.md)
 - [Git Tag 规范](../Governance/rules/rules_tag.md)
-- [开发检查清单](../Governance/checklists/dev_checklist.md)
+- [开发检查清单](../Governance/checklists/chk_dev.md)
 - [AI 开发指南](AI_Development_Guide.md)
 

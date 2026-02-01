@@ -192,6 +192,6 @@ Release v{VERSION}: {简短标题}
 
 - [发布管理规则](../rules/rules_release.md)
 - [Git Tag 规范](../rules/rules_tag.md)
-- [开发检查清单](dev_checklist.md)
+- [开发检查清单](chk_dev.md)
 - [AI 发布自动化指南](../../Guides/AI_Release_Automation_Guide.md)
 

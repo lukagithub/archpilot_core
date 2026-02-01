@@ -144,7 +144,7 @@ python archpilot/Scripts/validate_trace.py --full-chain --output trace_report.js
 | L1 文档 | `FR_[子系统]_[编号]_[描述].md` | FR_core_001_user_auth.md |
 | L2 文档 | `SA_[子系统]_[编号]_[描述].md` | SA_core_001_auth_arch.md |
 | L3 文档 | `DD_[子系统]_[编号]_[描述].md` | DD_core_001_login.md |
-| L5 测试 | `TC-[子系统]-[编号]-[类型]-[描述].md` | TC-core-001-unit-login.md |
+| L5 测试 | `TC_[子系统]_[编号]_[类型]_[描述].md` | TC_core_001_unit_login.md |
 | 代码文件 | snake_case | login_handler.cpp |
 | 类名 | PascalCase | LoginHandler |
 
@@ -274,7 +274,7 @@ python archpilot/Scripts/calculate_score.py --version v0.1.0 --output quality_sc
 
 ### 高优先级
 1. [追溯] DD_core_002 缺少 traces_from
-2. [追溯] TC-core-005 未追溯到需求
+2. [追溯] TC_core_005 未追溯到需求
 
 ### 中优先级
 3. [命名] test_util.py 不符合命名规范
@@ -320,7 +320,7 @@ python archpilot/Scripts/calculate_score.py --version v0.1.0 --output quality_sc
 | ID | 问题 | 负责人 | 计划时间 |
 |----|------|--------|----------|
 | Q001 | 补充 DD_core_002 追溯 | dev1 | 2026-02-02 |
-| Q002 | 补充 TC-core-005 追溯 | dev2 | 2026-02-02 |
+| Q002 | 补充 TC_core_005 追溯 | dev2 | 2026-02-02 |
 ```
 
 ---

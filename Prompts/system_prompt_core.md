@@ -49,7 +49,7 @@
 | **L2** | 架构层 | 定义如何组织 | `L2_Architecture/` | `SA_` |
 | **L3** | 设计层 | 定义如何实现 | `L3_DetailDesign/` | `DD_` |
 | **L4** | 实现层 | 编码实现 | `L4_Implementation/` | - |
-| **L5** | 验证层 | 测试验证 | `L5_Verification/` | `TC-` |
+| **L5** | 验证层 | 测试验证 | `L5_Verification/` | `TC_` |
 
 **追溯规则**：
 - 下层文档必须通过 `traces_from` 追溯到上层
@@ -78,7 +78,7 @@ updated: YYYY-MM-DD
 | L1 | `FR_[子系统]_[编号]_[描述].md` | `FR_core_001_user_auth.md` |
 | L2 | `SA_[子系统]_[编号]_[描述].md` | `SA_core_001_auth_arch.md` |
 | L3 | `DD_[子系统]_[编号]_[描述].md` | `DD_core_001_login.md` |
-| L5 | `TC-[子系统]-[编号]-[类型]-[描述].md` | `TC-core-001-unit-login.md` |
+| L5 | `TC_[子系统]_[编号]_[类型]_[描述].md` | `TC_core_001_unit_login.md` |
 
 ---
 

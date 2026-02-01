@@ -61,7 +61,7 @@ flowchart TB
     end
 
     subgraph Output["📤 输出"]
-        O1["TC-xxx 测试用例"]
+        O1["TC_xxx 测试用例"]
         O2["ReleaseNote"]
         O3["发布报告"]
         O4["Git Tag"]
@@ -88,9 +88,9 @@ flowchart TB
 
 **测试用例命名**:
 ```
-TC-[子系统]-[编号]-[类型]-[描述].md
+TC_[子系统]_[编号]_[类型]_[描述].md
 类型: unit / integ / sys / accept
-示例: TC-core-001-unit-login-validation.md
+示例: TC_core_001_unit_login_validation.md
 ```
 
 **执行动作**:
@@ -102,7 +102,7 @@ TC-[子系统]-[编号]-[类型]-[描述].md
 **追溯设置**:
 ```yaml
 ---
-id: TC-core-001-unit-login
+id: TC_core_001_unit_login
 layer: L5
 type: test
 traces_from: [FR_core_001, DD_core_001]
@@ -149,7 +149,7 @@ traces_from: [FR_core_001, DD_core_001]
 
 | 用例ID | 用例名称 | 执行日期 | 结果 | 备注 |
 |--------|----------|----------|------|------|
-| TC-core-001-unit-login | 登录验证 | 2026-02-01 | ✅ PASS | |
+| TC_core_001_unit_login | 登录验证 | 2026-02-01 | ✅ PASS | |
 | TC-core-002-unit-logout | 登出功能 | 2026-02-01 | ✅ PASS | |
 ```
 

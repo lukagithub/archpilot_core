@@ -30,6 +30,7 @@ Core 文件是 ArchPilot 框架的核心组成部分，按类型使用统一前�
 | **Rules 规则** | `rules_` | `rules_naming.md`, `rules_coding.md` | 约束和规范文件 |
 | **Workflow 工作流** | `flow_` | `flow_planning.md`, `flow_release.md` | 工作流程定义 |
 | **Templates 模板** | `tpl_` | `tpl_requirement.md`, `tpl_design.md` | 文档模板 |
+| **Checklists 检查清单** | `chk_` | `chk_release.md`, `chk_dev.md` | 检查清单文件 |
 | **Scripts 脚本** | 按语言后缀 | `validate_trace.py`, `deploy_project.sh` | 自动化脚本 |
 
 ### 2.2 命名格式
@@ -55,6 +56,7 @@ Core 文件是 ArchPilot 框架的核心组成部分，按类型使用统一前�
 | `Governance/rules/` | `rules_*.md` | 规则文件 |
 | `Governance/workflow/` | `flow_*.md` | 工作流文件 |
 | `Governance/templates/` | `tpl_*.md` | 模板文件 |
+| `Governance/checklists/` | `chk_*.md` | 检查清单文件 |
 | `Scripts/` | `*.py`, `*.sh` | 脚本文件 |
 
 ---
@@ -71,7 +73,7 @@ Core 文件是 ArchPilot 框架的核心组成部分，按类型使用统一前�
 | **L2 架构** | `SA_` | `SA_core_001_auth_arch.md` | Software Architecture |
 | **L3 设计** | `DD_` | `DD_core_001_login.md` | Detail Design |
 | **L4 实现** | 按语言 | `core_001_auth.cpp` | 代码文件 |
-| **L5 测试** | `TC-` | `TC-core-001-unit-login.md` | Test Case |
+| **L5 测试** | `TC_` | `TC_core_001_unit_login.md` | Test Case |
 
 ---
 
@@ -156,19 +158,19 @@ Core 文件是 ArchPilot 框架的核心组成部分，按类型使用统一前�
 
 ### 3.5 L5 验证层
 
-**格式**: `TC-[子系统]-[编号]-[类型]-[描述].md`
+**格式**: `TC_[子系统]_[编号]_[类型]_[描述].md`
 
 | 字段 | 规则 |
 |------|------|
-| 前缀 | `TC-` |
+| 前缀 | `TC_` |
 | 子系统 | 全小写字母 |
 | 编号 | 三位数字 |
 | 类型 | unit/integration/system/performance/acceptance |
-| 描述 | 短横线连接的小写描述 |
+| 描述 | 下划线连接的小写描述 |
 
 **示例**:
-- `TC-core-001-unit-login-basic.md`
-- `TC-data-002-integration-storage-sync.md`
+- `TC_core_001_unit_login_basic.md`
+- `TC_data_002_integration_storage_sync.md`
 
 ---
 
@@ -216,19 +218,22 @@ related: [FR_core_002]
 
 ### 5.1 字符限制
 
-- ✅ 仅使用 ASCII 字母、数字、下划线、短横线
+- ✅ 仅使用 ASCII 字母、数字、下划线
+- ❌ **禁止使用中划线（短横线 `-`）**：避免在某些工具或代码规范中造成不兼容
 - ❌ 禁止使用空格
 - ❌ 禁止使用特殊字符（如 `!@#$%^&*()`）
 - ❌ 禁止使用中文字符
+
+> **重要**: 所有文件名统一使用下划线 `_` 作为分隔符，不使用中划线 `-`。
 
 ### 5.2 大小写规则
 
 | 上下文 | 规则 |
 |--------|------|
-| 文件名 | snake_case 或 kebab-case |
+| 文件名 | snake_case（下划线分隔） |
 | 目录名 | PascalCase 或 snake_case |
-| 前缀 | UPPER_CASE（如 FR_、SA_、DD_） |
-| 描述部分 | snake_case 或 kebab-case |
+| 前缀 | UPPER_CASE（如 FR_、SA_、DD_、TC_） |
+| 描述部分 | snake_case（下划线分隔） |
 
 ### 5.3 长度限制
 

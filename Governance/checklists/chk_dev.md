@@ -323,5 +323,5 @@ grep -r "@design" L4_Implementation/
 - `rules/rules_naming.md` - 命名规范
 - `rules/rules_coding.md` - 编码规范
 - `rules/rules_testcases.md` - 测试用例规范
-- `release_checklist.md` - 发布检查清单
+- `chk_release.md` - 发布检查清单
 

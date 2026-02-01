@@ -22,14 +22,17 @@
 |------|--------|--------|--------|----------|
 | **容器框（统一）** | `#fafafa` 浅灰 | `#424242` 深灰 | `#000` 黑色 | 2px |
 | **步骤节点** | `#ffffff` 白色 | `#424242` 深灰 | `#000` 黑色 | 2px |
-| **连线** | - | `#000000` 纯黑 | - | 2px |
+| **连线/箭头** | - | `#000000` 纯黑 | - | 2px |
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'lineColor': '#000000', 'arrowheadColor': '#000000' }}}%%
+%% 在文件开头添加上述 init 配置，强制所有连线和箭头为纯黑色
+
 %% 容器框和步骤节点样式（必须统一使用）
 classDef frameStyle fill:#fafafa,stroke:#424242,stroke-width:2px,color:#000
 classDef stepStyle fill:#fff,stroke:#424242,stroke-width:2px,color:#000
 
-%% 连线样式（纯黑色，增强可见度）
+%% 连线样式（备用方案，部分渲染器可能需要）
 linkStyle default stroke:#000,stroke-width:2px
 ```
 
@@ -43,19 +46,21 @@ linkStyle default stroke:#000,stroke-width:2px
 
 | 文档类型 | 前缀 | 背景色 | 边框色 | 色系 | 示例 |
 |----------|------|--------|--------|------|------|
-| **Entry 入口** | 无前缀 | `#eceff1` 蓝灰 | `#607d8b` 灰蓝 | 冷灰 | README.md, QUICK_START.md |
-| **Rules 规则** | `rules_` | `#e8eaf6` 靛蓝浅 | `#5c6bc0` 靛蓝 | 冷蓝 | rules_naming.md, rules_coding.md |
-| **Workflow 工作流** | `flow_` | `#e0f2f1` 青绿浅 | `#26a69a` 青绿 | 冷青 | flow_planning.md, flow_release.md |
-| **Templates 模板** | `tpl_` | `#e3f2fd` 蓝浅 | `#42a5f5` 蓝 | 冷蓝 | tpl_requirement.md, tpl_design.md |
-| **Scripts 脚本** | `*.py\|*.sh` | `#ede7f6` 紫浅 | `#7e57c2` 紫 | 冷紫 | validate_trace.py, deploy_project.sh |
+| **Entry 入口** | 无前缀 | `#f3e5f5` 淡紫 | `#8e24aa` 紫 | 冷紫 | README.md, QUICK_START.md |
+| **Rules 规则** | `rules_` | `#fce4ec` 淡粉 | `#c2185b` 玫红 | 冷粉 | rules_naming.md, rules_coding.md |
+| **Workflow 工作流** | `flow_` | `#e0f2f1` 青绿浅 | `#00897b` 青绿 | 冷青 | flow_planning.md, flow_release.md |
+| **Templates 模板** | `tpl_` | `#eceff1` 蓝灰 | `#546e7a` 灰蓝 | 冷灰 | tpl_requirement.md, tpl_design.md |
+| **Checklists 检查清单** | `chk_` | `#e3f2fd` 蓝浅 | `#1976d2` 蓝 | 冷蓝 | chk_release.md, chk_dev.md |
+| **Scripts 脚本** | `*.py\|*.sh` | `#e8eaf6` 靛蓝浅 | `#3949ab` 靛蓝 | 冷靛 | validate_trace.py, deploy_project.sh |
 
 ```mermaid
 %% Core 文件颜色（低饱和度冷色调）
-classDef entryStyle fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#000
-classDef ruleStyle fill:#e8eaf6,stroke:#5c6bc0,stroke-width:2px,color:#000
-classDef workflowStyle fill:#e0f2f1,stroke:#26a69a,stroke-width:2px,color:#000
-classDef tplStyle fill:#e3f2fd,stroke:#42a5f5,stroke-width:2px,color:#000
-classDef scriptStyle fill:#ede7f6,stroke:#7e57c2,stroke-width:2px,color:#000
+classDef entryStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px,color:#000
+classDef ruleStyle fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+classDef workflowStyle fill:#e0f2f1,stroke:#00897b,stroke-width:2px,color:#000
+classDef tplStyle fill:#eceff1,stroke:#546e7a,stroke-width:2px,color:#000
+classDef chkStyle fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+classDef scriptStyle fill:#e8eaf6,stroke:#3949ab,stroke-width:2px,color:#000
 ```
 
 #### 过程产物（高饱和度暖色调）
@@ -65,7 +70,7 @@ classDef scriptStyle fill:#ede7f6,stroke:#7e57c2,stroke-width:2px,color:#000
 | 文档类型 | 前缀 | 背景色 | 边框色 | 色系 | 示例 |
 |----------|------|--------|--------|------|------|
 | **Output 产出** | `FR_\|SA_\|DD_` | `#fff3e0` 橙浅 | `#ff9800` 橙 | 暖橙 | FR_core_001.md, SA_core_001.md, DD_core_001.md |
-| **Output 高亮** | `TC-` | `#ffccbc` 深橙浅 | `#ff5722` 深橙 | 暖红橙 | 代码文件, TC-core-001-unit.md |
+| **Output 高亮** | `TC_` | `#ffccbc` 深橙浅 | `#ff5722` 深橙 | 暖红橙 | 代码文件, TC_core_001_unit.md |
 
 ```mermaid
 %% 过程产物颜色（高饱和度暖色调）

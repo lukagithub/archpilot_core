@@ -197,7 +197,7 @@ def calculate_d4_score(project_root: str) -> dict:
         score = 1.0
         deductions.append("L5 Verification directory not found")
     else:
-        test_files = list(l5_dir.rglob("TC-*.md")) + \
+        test_files = list(l5_dir.rglob("TC_*.md")) + \
                      list(l5_dir.rglob("test_*.py")) + \
                      list(l5_dir.rglob("*_test.cpp"))
 

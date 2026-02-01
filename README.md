@@ -40,8 +40,8 @@ archpilot_core/
 │   │   └── rules_testcases.md          # 测试用例规范
 │   │
 │   ├── checklists/                     # 检查清单层
-│   │   ├── dev_checklist.md            # 开发检查清单（L1-L5 一致性）
-│   │   └── release_checklist.md        # 发布检查清单
+│   │   ├── chk_dev.md                   # 开发检查清单（L1-L5 一致性）
+│   │   └── chk_release.md               # 发布检查清单
 │   │
 │   └── templates/                      # 模板层
 │       ├── tpl_requirement.md          # L1 需求模板
@@ -101,8 +101,8 @@ archpilot_core/
   └─ ...
         ↓
 检查执行层（质量门禁）
-  ├─ dev_checklist.md
-  └─ release_checklist.md
+  ├─ chk_dev.md
+  └─ chk_release.md
         ↓
 自动化执行层（AI/脚本）
   ├─ AI_Development_Guide.md
@@ -155,7 +155,7 @@ graph TD
     C --> D
     C --> E
     C --> F
-    D --> G[dev_checklist.md]
+    D --> G[chk_dev.md]
     E --> G
     F --> G
     F --> H[AI_Release_Automation_Guide.md]

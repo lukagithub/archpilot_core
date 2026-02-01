@@ -87,7 +87,7 @@
 实现（Implement）   L4 实现层               代码文件
     │
     ▼
-发布（Release）     L5 验证层               TC-xxx 测试用例
+发布（Release）     L5 验证层               TC_xxx 测试用例
                     -                       ReleaseNote、Tag
 ```
 

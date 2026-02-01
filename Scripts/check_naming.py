@@ -60,7 +60,7 @@ LAYER_CONFIG = {
     },
     "L5": {
         "directory": "L5_Verification",
-        "prefix_pattern": r"^TC-[a-z]+-\d{3}-[a-z]+-[a-z-]+\.md$",
+        "prefix_pattern": r"^TC_[a-z]+_\d{3}_[a-z]+_[a-z_]+\.md$",
         "description": "测试用例"
     }
 }

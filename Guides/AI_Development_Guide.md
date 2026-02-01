@@ -152,7 +152,7 @@ AI → 生成报告或请求人工确认
 
 测试要求：
 1. 遵循 rules_testcases.md 命名规范
-2. 文件名格式：TC-[subsystem]-[id]-[type]-[desc].md
+2. 文件名格式：TC_[subsystem]_[id]_[type]_[desc].md
 3. 包含完整的 YAML 元数据
 4. traces_from 引用被测的 L1 需求
 

@@ -23,7 +23,7 @@ enabled: true
 2. `Governance/rules/rules_release.md` - 发布管理规则
 3. `Governance/rules/rules_tag.md` - Git Tag 规范
 4. `Governance/rules/rules_scripts.md` - 脚本执行规范
-5. `Governance/checklists/dev_checklist.md` - 开发检查清单
+5. `Governance/checklists/chk_dev.md` - 开发检查清单
 
 ### 模板文件
 - `Governance/templates/tpl_release_notes.md`
