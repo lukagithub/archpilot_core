@@ -47,24 +47,25 @@ flowchart TB
             P1_S["① 规划/微调迭代"]
             P1_D1[/"flow_planning.md"/]
             P1_D2[/"ARCHITECTURE_DEFINITION.md"/]
-            P1_S --- P1_D1 & P1_D2
+            P1_D3[/"GLOSSARY.md"/]
+            P1_S --- P1_D1
+            P1_D1 --- P1_D2 & P1_D3
         end
 
         subgraph P2["Gate2 设计"]
             direction TB
             P2_S["① L1 需求"]
-            P2_D1[/"ARCHITECTURE_DEFINITION.md"/]
-            P2_D2[/"tpl_requirement.md"/]
+            P2_D1[/"tpl_requirement.md"/]
+            P2_D2[/"rules_naming.md"/]
             P2_M["② L2 架构"]
             P2_D3[/"tpl_architecture.md"/]
             P2_E["③ L3 设计"]
             P2_D4[/"tpl_design.md"/]
-            P2_D5[/"rules_naming.md"/]
             P2_S --- P2_D1 & P2_D2
             P2_D1 & P2_D2 --- P2_M
             P2_M --- P2_D3
             P2_D3 --- P2_E
-            P2_E --- P2_D4 & P2_D5
+            P2_E --- P2_D4
         end
 
         subgraph P3["Gate3 实现"]
@@ -185,14 +186,13 @@ flowchart TB
     class I_D1,I_D2 entryStyle
     class I_D3 scriptStyle
 
-    %% Gate1 规划: Workflow(绿) + Entry(红)
+    %% Gate1 规划: Workflow(绿) + Entry(灰)
     class P1_D1 workflowStyle
-    class P1_D2 entryStyle
+    class P1_D2,P1_D3 entryStyle
 
-    %% Gate2: Entry(红) + Templates(蓝) + Rules(黄)
-    class P2_D1 entryStyle
-    class P2_D2,P2_D3,P2_D4 tplStyle
-    class P2_D5 ruleStyle
+    %% Gate2: Templates(蓝) + Rules(靛蓝)
+    class P2_D1,P2_D3,P2_D4 tplStyle
+    class P2_D2 ruleStyle
 
     %% Gate3: Rules(黄) + Workflow(绿) + Templates(蓝) + Scripts(紫)
     class P3_D1 ruleStyle
