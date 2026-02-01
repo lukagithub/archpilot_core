@@ -20,13 +20,17 @@
 
 | 用途 | 背景色 | 边框色 | 文字色 | 边框宽度 |
 |------|--------|--------|--------|----------|
-| **容器框（统一）** | `#fafafa` 浅灰 | `#616161` 灰色 | `#000` 黑色 | 2px |
-| **步骤节点** | `#ffffff` 白色 | `#616161` 灰色 | `#000` 黑色 | 2px |
+| **容器框（统一）** | `#fafafa` 浅灰 | `#424242` 深灰 | `#000` 黑色 | 2px |
+| **步骤节点** | `#ffffff` 白色 | `#424242` 深灰 | `#000` 黑色 | 2px |
+| **连线** | - | `#333333` 黑色 | - | 2px |
 
 ```mermaid
 %% 容器框和步骤节点样式（必须统一使用）
-classDef frameStyle fill:#fafafa,stroke:#616161,stroke-width:2px,color:#000
-classDef stepStyle fill:#fff,stroke:#616161,stroke-width:2px,color:#000
+classDef frameStyle fill:#fafafa,stroke:#424242,stroke-width:2px,color:#000
+classDef stepStyle fill:#fff,stroke:#424242,stroke-width:2px,color:#000
+
+%% 连线样式（黑色，易于观察）
+linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ### 2.2 文档/过程产物颜色

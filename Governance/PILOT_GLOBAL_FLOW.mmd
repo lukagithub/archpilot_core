@@ -139,10 +139,13 @@ flowchart TB
     Legend --> Phases
     Phases --> AI_Pilot
 
+    %% ==================== 连线样式（黑色） ====================
+    linkStyle default stroke:#333,stroke-width:2px
+
     %% ==================== 样式定义 ====================
-    %% 框架样式（所有大框统一背景色）
-    classDef frameStyle fill:#fafafa,stroke:#616161,stroke-width:2px,color:#000
-    classDef stepStyle fill:#fff,stroke:#616161,stroke-width:2px,color:#000
+    %% 框架样式（所有大框统一背景色，连线黑色）
+    classDef frameStyle fill:#fafafa,stroke:#424242,stroke-width:2px,color:#000
+    classDef stepStyle fill:#fff,stroke:#424242,stroke-width:2px,color:#000
 
     %% 文档维度颜色（仅用于文档节点）
     classDef entryStyle fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
@@ -156,6 +159,7 @@ flowchart TB
     class Role,Legend,Phases,P1,P2,P3,P4,AI_Pilot,AI_IN,AI_PROC,AI_OUT frameStyle
     class P1_S,P1_M,P1_E,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
     class AI_P1,AI_P2,AI_P3 stepStyle
+    class R1,R2,R3,R4 stepStyle
 
     %% 图例颜色
     class L1 entryStyle
