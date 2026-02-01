@@ -41,13 +41,13 @@ linkStyle default stroke:#333,stroke-width:2px
 
 用于框架内稳定、低频变更的文件：
 
-| 文档类型 | 背景色 | 边框色 | 色系 | 示例 |
-|----------|--------|--------|------|------|
-| **Entry 入口** | `#eceff1` 蓝灰 | `#607d8b` 灰蓝 | 冷灰 | README.md, QUICK_START.md |
-| **Rules 规则** | `#e8eaf6` 靛蓝浅 | `#5c6bc0` 靛蓝 | 冷蓝 | rules_*.md |
-| **Workflow 工作流** | `#e0f2f1` 青绿浅 | `#26a69a` 青绿 | 冷青 | flow_*.md |
-| **Templates 模板** | `#e3f2fd` 蓝浅 | `#42a5f5` 蓝 | 冷蓝 | *_template.md |
-| **Scripts 脚本** | `#ede7f6` 紫浅 | `#7e57c2` 紫 | 冷紫 | *.py, *.sh |
+| 文档类型 | 前缀 | 背景色 | 边框色 | 色系 | 示例 |
+|----------|------|--------|--------|------|------|
+| **Entry 入口** | 无前缀 | `#eceff1` 蓝灰 | `#607d8b` 灰蓝 | 冷灰 | README.md, QUICK_START.md |
+| **Rules 规则** | `rules_` | `#e8eaf6` 靛蓝浅 | `#5c6bc0` 靛蓝 | 冷蓝 | rules_naming.md, rules_coding.md |
+| **Workflow 工作流** | `flow_` | `#e0f2f1` 青绿浅 | `#26a69a` 青绿 | 冷青 | flow_planning.md, flow_release.md |
+| **Templates 模板** | `tpl_` | `#e3f2fd` 蓝浅 | `#42a5f5` 蓝 | 冷蓝 | tpl_requirement.md, tpl_design.md |
+| **Scripts 脚本** | `*.py\|*.sh` | `#ede7f6` 紫浅 | `#7e57c2` 紫 | 冷紫 | validate_trace.py, deploy_project.sh |
 
 ```mermaid
 %% Core 文件颜色（低饱和度冷色调）
@@ -62,10 +62,10 @@ classDef scriptStyle fill:#ede7f6,stroke:#7e57c2,stroke-width:2px,color:#000
 
 用于具体项目输出、高频变更的文件：
 
-| 文档类型 | 背景色 | 边框色 | 色系 | 示例 |
-|----------|--------|--------|------|------|
-| **Output 产出** | `#fff3e0` 橙浅 | `#ff9800` 橙 | 暖橙 | FR_*.md, SA_*.md, DD_*.md |
-| **Output 高亮** | `#ffccbc` 深橙浅 | `#ff5722` 深橙 | 暖红橙 | 代码文件, TC-*.md |
+| 文档类型 | 前缀 | 背景色 | 边框色 | 色系 | 示例 |
+|----------|------|--------|--------|------|------|
+| **Output 产出** | `FR_\|SA_\|DD_` | `#fff3e0` 橙浅 | `#ff9800` 橙 | 暖橙 | FR_core_001.md, SA_core_001.md, DD_core_001.md |
+| **Output 高亮** | `TC-` | `#ffccbc` 深橙浅 | `#ff5722` 深橙 | 暖红橙 | 代码文件, TC-core-001-unit.md |
 
 ```mermaid
 %% 过程产物颜色（高饱和度暖色调）

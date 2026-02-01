@@ -271,5 +271,5 @@ git push origin --delete v1.2.0
 ## 7. 关联文档
 
 - `rules_release.md` - 发布管理规则
-- `../templates/release_notes_template.md` - 发布说明模板
+- `../templates/tpl_release_notes.md` - 发布说明模板
 

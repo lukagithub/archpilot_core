@@ -108,7 +108,7 @@ Release v{VERSION}: {简短标题}
 
 ## 发布报告模板
 
-使用 `templates/release_report_template.md`
+使用 `templates/tpl_release_report.md`
 
 必需包含：
 - 质量评分表（D1-D5）

@@ -91,7 +91,7 @@ my_project/                    # 项目根目录
 1. **引用而非修改**
    ```bash
    # 使用框架模板创建新文档
-   cp archpilot/Governance/templates/requirement_template.md \
+   cp archpilot/Governance/templates/tpl_requirement.md \
       L1_Requirements/FR_core_001_xxx.md
    ```
 

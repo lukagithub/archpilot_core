@@ -102,7 +102,7 @@ L5_Directory: my_project/L5_Verification/
 使用模板创建第一个 L1 需求文档：
 
 ```bash
-cp Governance/templates/requirement_template.md L1_Requirements/FR_core_001_basic_feature.md
+cp Governance/templates/tpl_requirement.md L1_Requirements/FR_core_001_basic_feature.md
 ```
 
 编辑文件，填写需求内容：

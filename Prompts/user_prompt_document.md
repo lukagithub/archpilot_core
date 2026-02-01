@@ -75,10 +75,10 @@ related: []
 
 根据层级选择对应模板：
 
-- L1 需求：`templates/requirement_template.md`
-- L2 架构：`templates/architecture_template.md`
-- L3 设计：`templates/design_template.md`
-- L5 测试：`templates/testcase_template.md`
+- L1 需求：`templates/tpl_requirement.md`
+- L2 架构：`templates/tpl_architecture.md`
+- L3 设计：`templates/tpl_design.md`
+- L5 测试：`templates/tpl_testcase.md`
 
 ---
 

@@ -16,11 +16,11 @@ flowchart TB
         direction LR
         subgraph LG1["Core文件(冷色)"]
             direction LR
-            L1[/"Entry"/] ~~~ L2[/"Rules"/] ~~~ L3[/"Workflow"/] ~~~ L4[/"Templates"/] ~~~ L5[/"Scripts"/]
+            L1[/"Entry: 无前缀"/] ~~~ L2[/"Rules: rules_"/] ~~~ L3[/"Workflow: flow_"/] ~~~ L4[/"Templates: tpl_"/] ~~~ L5[/"Scripts: *.py|*.sh"/]
         end
         subgraph LG2["过程产物(暖色)"]
             direction LR
-            L6[/"Output"/]
+            L6[/"Output: FR_|SA_|DD_|TC-"/]
         end
         LG1 ~~~ LG2
     end
@@ -54,11 +54,11 @@ flowchart TB
             direction TB
             P2_S["① L1 需求"]
             P2_D1[/"ARCHITECTURE_DEFINITION.md"/]
-            P2_D2[/"requirement_template.md"/]
+            P2_D2[/"tpl_requirement.md"/]
             P2_M["② L2 架构"]
-            P2_D3[/"architecture_template.md"/]
+            P2_D3[/"tpl_architecture.md"/]
             P2_E["③ L3 设计"]
-            P2_D4[/"design_template.md"/]
+            P2_D4[/"tpl_design.md"/]
             P2_D5[/"rules_naming.md"/]
             P2_S --- P2_D1 & P2_D2
             P2_D1 & P2_D2 --- P2_M
@@ -73,7 +73,7 @@ flowchart TB
             P3_D1[/"rules_coding.md"/]
             P3_D2[/"flow_implement.md"/]
             P3_M["② L5 测试"]
-            P3_D3[/"testcase_template.md"/]
+            P3_D3[/"tpl_testcase.md"/]
             P3_E["③ 质量检查"]
             P3_D4[/"validate_trace.py"/]
             P3_D5[/"check_naming.py"/]

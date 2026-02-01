@@ -364,15 +364,15 @@ FR_core_002  ◄─────  SA_core_001  ◄─────  DD_core_002
 
 ```bash
 # 生成 FR 文档
-"使用 archpilot/Governance/templates/requirement_template.md 模板，
+"使用 archpilot/Governance/templates/tpl_requirement.md 模板，
  生成 FR_[subsystem]_[id]_[desc].md"
 
 # 生成 SA 文档（含追溯）
-"基于 FR_core_001，使用 architecture_template.md 生成架构文档，
+"基于 FR_core_001，使用 tpl_architecture.md 生成架构文档，
  确保 traces_from 正确设置"
 
 # 生成 DD 文档（含追溯）
-"基于 SA_core_001，使用 design_template.md 生成设计文档"
+"基于 SA_core_001，使用 tpl_design.md 生成设计文档"
 ```
 
 ---

@@ -26,8 +26,8 @@ enabled: true
 5. `Governance/checklists/dev_checklist.md` - 开发检查清单
 
 ### 模板文件
-- `Governance/templates/release_notes_template.md`
-- `Governance/templates/release_report_template.md`
+- `Governance/templates/tpl_release_notes.md`
+- `Governance/templates/tpl_release_report.md`
 
 ## 发布执行流程
 

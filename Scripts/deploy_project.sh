@@ -266,7 +266,7 @@ ${PROJECT_NAME}/
 ### 1. 创建第一个需求文档
 
 \`\`\`bash
-cp archpilot/Governance/templates/requirement_template.md L1_Requirements/FR_core_001_[描述].md
+cp archpilot/Governance/templates/tpl_requirement.md L1_Requirements/FR_core_001_[描述].md
 \`\`\`
 
 ### 2. 配置 AI Agent
@@ -482,7 +482,7 @@ show_completion() {
     echo -e "     ${BLUE}cat README.md${NC}"
     echo ""
     echo -e "  3. 创建第一个需求文档:"
-    echo -e "     ${BLUE}cp archpilot/Governance/templates/requirement_template.md L1_Requirements/FR_core_001_xxx.md${NC}"
+    echo -e "     ${BLUE}cp archpilot/Governance/templates/tpl_requirement.md L1_Requirements/FR_core_001_xxx.md${NC}"
     echo ""
     echo -e "  4. 配置 AI Agent 并开始开发"
     echo ""

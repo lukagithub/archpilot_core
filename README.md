@@ -44,12 +44,12 @@ archpilot_core/
 │   │   └── release_checklist.md        # 发布检查清单
 │   │
 │   └── templates/                      # 模板层
-│       ├── requirement_template.md     # L1 需求模板
-│       ├── architecture_template.md    # L2 架构模板
-│       ├── design_template.md          # L3 设计模板
-│       ├── testcase_template.md        # L5 测试模板
-│       ├── release_notes_template.md   # 发布说明模板
-│       └── release_report_template.md  # 发布报告模板
+│       ├── tpl_requirement.md          # L1 需求模板
+│       ├── tpl_architecture.md         # L2 架构模板
+│       ├── tpl_design.md               # L3 设计模板
+│       ├── tpl_testcase.md             # L5 测试模板
+│       ├── tpl_release_notes.md        # 发布说明模板
+│       └── tpl_release_report.md       # 发布报告模板
 │
 ├── Agents/                             # Agent 定义层
 │   ├── README.md                       # Agent 使用说明

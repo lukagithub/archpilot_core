@@ -192,13 +192,13 @@
 
 | 任务类型 | 需加载的规则文档 | 需加载的模板 |
 |----------|-----------------|-------------|
-| 创建需求文档 | rules_naming.md | requirement_template.md |
-| 创建架构文档 | rules_naming.md | architecture_template.md |
-| 创建设计文档 | rules_naming.md | design_template.md |
+| 创建需求文档 | rules_naming.md | tpl_requirement.md |
+| 创建架构文档 | rules_naming.md | tpl_architecture.md |
+| 创建设计文档 | rules_naming.md | tpl_design.md |
 | 编写代码 | rules_coding.md, rules_naming.md | - |
 | 编写脚本 | rules_scripts.md | - |
-| 编写测试 | rules_testcases.md | testcase_template.md |
-| 版本发布 | rules_release.md, rules_tag.md | release_notes_template.md |
+| 编写测试 | rules_testcases.md | tpl_testcase.md |
+| 版本发布 | rules_release.md, rules_tag.md | tpl_release_notes.md |
 | 质量检查 | dev_checklist.md | - |
 | 发布检查 | release_checklist.md | - |
 
@@ -237,7 +237,7 @@ User Prompt 依赖链（示例：创建需求文档）：
 rules_naming.md
     └── ARCHITECTURE_DEFINITION.md（已在 System）
     └── GLOSSARY.md（已在 System）
-requirement_template.md
+tpl_requirement.md
 ```
 
 ### 5.2 加载顺序

@@ -57,7 +57,7 @@ user_prompt_templates:
 ```
 用户：请帮我创建一个 L1 需求文档
 AI：[识别任务类型: 创建文档]
-    [请求加载: user_prompt_document.md + requirement_template.md]
+    [请求加载: user_prompt_document.md + tpl_requirement.md]
 ```
 
 ---

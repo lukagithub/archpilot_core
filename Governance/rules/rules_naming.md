@@ -1,8 +1,8 @@
 # 文档命名规范
 
-**文档版本**: v1.0.0  
+**文档版本**: v1.1.0  
 **最后更新**: 2026-02-01  
-**适用范围**: L1-L5 所有层级文档
+**适用范围**: L1-L5 所有层级文档及 Core 框架文件
 
 > 本文档定义了项目中所有文档和文件的命名规则。
 
@@ -18,9 +18,66 @@
 
 ---
 
-## 2. 核心编号原则
+## 2. Core 文件前缀规范
 
-### 2.1 唯一编号规则
+Core 文件是 ArchPilot 框架的核心组成部分，按类型使用统一前缀。
+
+### 2.1 前缀定义
+
+| 类型 | 前缀 | 示例 | 说明 |
+|------|------|------|------|
+| **Entry 入口** | 无前缀 | `README.md`, `QUICK_START.md` | 项目入口文件，大写命名 |
+| **Rules 规则** | `rules_` | `rules_naming.md`, `rules_coding.md` | 约束和规范文件 |
+| **Workflow 工作流** | `flow_` | `flow_planning.md`, `flow_release.md` | 工作流程定义 |
+| **Templates 模板** | `tpl_` | `tpl_requirement.md`, `tpl_design.md` | 文档模板 |
+| **Scripts 脚本** | 按语言后缀 | `validate_trace.py`, `deploy_project.sh` | 自动化脚本 |
+
+### 2.2 命名格式
+
+```
+[前缀][功能描述].[扩展名]
+
+示例:
+- rules_naming.md      → 命名规范
+- flow_planning.md     → 规划工作流
+- tpl_requirement.md   → 需求模板
+```
+
+### 2.3 Core 文件完整列表
+
+| 目录 | 文件 | 说明 |
+|------|------|------|
+| `/` | `README.md` | 项目入口 |
+| `/` | `QUICK_START.md` | 快速开始 |
+| `Governance/` | `ARCHITECTURE_DEFINITION.md` | 架构定义 |
+| `Governance/` | `GLOSSARY.md` | 术语表 |
+| `Governance/` | `GOVERNANCE_OVERVIEW.md` | 治理总览 |
+| `Governance/rules/` | `rules_*.md` | 规则文件 |
+| `Governance/workflow/` | `flow_*.md` | 工作流文件 |
+| `Governance/templates/` | `tpl_*.md` | 模板文件 |
+| `Scripts/` | `*.py`, `*.sh` | 脚本文件 |
+
+---
+
+## 3. 过程产物前缀规范
+
+过程产物是具体项目开发过程中生成的文档，按 L1-L5 层级使用统一前缀。
+
+### 3.1 前缀定义
+
+| 层级 | 前缀 | 示例 | 说明 |
+|------|------|------|------|
+| **L1 需求** | `FR_` | `FR_core_001_user_auth.md` | Functional Requirement |
+| **L2 架构** | `SA_` | `SA_core_001_auth_arch.md` | Software Architecture |
+| **L3 设计** | `DD_` | `DD_core_001_login.md` | Detail Design |
+| **L4 实现** | 按语言 | `core_001_auth.cpp` | 代码文件 |
+| **L5 测试** | `TC-` | `TC-core-001-unit-login.md` | Test Case |
+
+---
+
+## 4. 核心编号原则
+
+### 4.1 唯一编号规则
 
 1. **层级内部唯一性**:
    - FR 编号在 L1 内部唯一
@@ -205,10 +262,12 @@ related: [FR_core_002]
 
 | 文件类型 | 命名 |
 |----------|------|
-| 需求模板 | `requirement_template.md` |
-| 架构模板 | `architecture_template.md` |
-| 设计模板 | `design_template.md` |
-| 测试模板 | `testcase_template.md` |
+| 需求模板 | `tpl_requirement.md` |
+| 架构模板 | `tpl_architecture.md` |
+| 设计模板 | `tpl_design.md` |
+| 测试模板 | `tpl_testcase.md` |
+| 发布说明模板 | `tpl_release_notes.md` |
+| 发布报告模板 | `tpl_release_report.md` |
 
 ---
 
