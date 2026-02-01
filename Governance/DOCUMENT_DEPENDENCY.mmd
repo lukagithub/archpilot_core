@@ -1,0 +1,66 @@
+%% AI 变更保护声明
+%% 本文件受 AI 变更保护，修改需人工确认
+
+graph TD
+    subgraph 核心定义层
+        A[GOVERNANCE_OVERVIEW.md]
+        B[ARCHITECTURE_DEFINITION.md]
+        C[GLOSSARY.md]
+    end
+
+    subgraph 规则标准层
+        D[rules_agent.md]
+        E[rules_coding.md]
+        F[rules_naming.md]
+        G[rules_scripts.md]
+        H[rules_release.md]
+        I[rules_tag.md]
+        J[rules_testcases.md]
+    end
+
+    subgraph 检查执行层
+        K[dev_checklist.md]
+        L[release_checklist.md]
+    end
+
+    subgraph 自动化执行层
+        M[AI_Development_Guide.md]
+        N[AI_Release_Automation_Guide.md]
+        O[agent_dev_main.md]
+        P[agent_release.md]
+    end
+
+    %% 核心定义层依赖
+    A --> B
+    A --> C
+
+    %% 规则层依赖核心层
+    B --> D
+    B --> E
+    B --> F
+    B --> G
+    B --> H
+    B --> I
+    B --> J
+    C --> D
+    C --> E
+    C --> F
+
+    %% 检查层依赖规则层
+    E --> K
+    F --> K
+    J --> K
+    H --> L
+    I --> L
+
+    %% 自动化层依赖
+    A --> M
+    A --> N
+    D --> O
+    E --> O
+    F --> O
+    H --> P
+    I --> P
+    K --> M
+    L --> N
+
