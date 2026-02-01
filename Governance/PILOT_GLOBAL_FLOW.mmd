@@ -1,0 +1,112 @@
+%% ========================================
+%% ArchPilot Core 全局 Pilot 流程图
+%% 角色：系统架构师 / 软件架构工程师
+%% 说明：展示如何使用整个工程的文档资产推进项目迭代
+%% ========================================
+
+flowchart TB
+    %% ==================== 角色入口 ====================
+    subgraph Role["👤 系统/软件架构工程师"]
+        direction LR
+        R1["🏛️ 架构设计"] ~~~ R2["💻 开发指导"] ~~~ R3["🔍 质量把控"] ~~~ R4["🚀 版本发布"]
+    end
+
+    %% ==================== Pilot 迭代周期（核心） ====================
+    subgraph Phases["📅 Pilot 迭代周期"]
+        direction LR
+
+        subgraph P1["Phase1 启动"]
+            direction TB
+            P1_S["① 理解框架　　"]
+            P1_D1[/"📖 README"/]
+            P1_D2[/"📖 QUICK_START"/]
+            P1_M["② 部署项目　　"]
+            P1_D3[/"🔧 deploy_project.sh"/]
+            P1_E["③ 规划迭代　　"]
+            P1_D4[/"🔄 flow_planning"/]
+            P1_S --- P1_D1 & P1_D2
+            P1_D1 & P1_D2 --- P1_M
+            P1_M --- P1_D3
+            P1_D3 --- P1_E
+            P1_E --- P1_D4
+        end
+
+        subgraph P2["Phase2 设计"]
+            direction TB
+            P2_S["① L1 需求　　　"]
+            P2_D1[/"📏 ARCHITECTURE_DEF"/]
+            P2_D2[/"📝 requirement_tpl"/]
+            P2_M["② L2 架构　　　"]
+            P2_D3[/"📝 architecture_tpl"/]
+            P2_E["③ L3 设计　　　"]
+            P2_D4[/"📝 design_tpl"/]
+            P2_D5[/"📏 rules_naming"/]
+            P2_S --- P2_D1 & P2_D2
+            P2_D1 & P2_D2 --- P2_M
+            P2_M --- P2_D3
+            P2_D3 --- P2_E
+            P2_E --- P2_D4 & P2_D5
+        end
+
+        subgraph P3["Phase3 实现"]
+            direction TB
+            P3_S["① L4 代码　　　"]
+            P3_D1[/"📏 rules_coding"/]
+            P3_D2[/"🔄 flow_implement"/]
+            P3_M["② L5 测试　　　"]
+            P3_D3[/"📝 testcase_tpl"/]
+            P3_E["③ 质量检查　　"]
+            P3_D4[/"🔧 validate_trace"/]
+            P3_D5[/"🔧 check_naming"/]
+            P3_S --- P3_D1 & P3_D2
+            P3_D1 & P3_D2 --- P3_M
+            P3_M --- P3_D3
+            P3_D3 --- P3_E
+            P3_E --- P3_D4 & P3_D5
+        end
+
+        subgraph P4["Gate4 发布"]
+            direction TB
+            P4_S["① 版本发布　　"]
+            P4_D1[/"📏 rules_release"/]
+            P4_D2[/"🔄 flow_release"/]
+            P4_M["② 验收闭环　　"]
+            P4_D3[/"🔧 calculate_score"/]
+            P4_E["③ 迭代复盘　　"]
+            P4_D4[/"📄 ReleaseNote"/]
+            P4_S --- P4_D1 & P4_D2
+            P4_D1 & P4_D2 --- P4_M
+            P4_M --- P4_D3
+            P4_D3 --- P4_E
+            P4_E --- P4_D4
+        end
+
+        P1 ==> P2 ==> P3 ==> P4
+    end
+
+    %% 迭代闭环
+    P4 -.->|🔄 下一迭代| P1
+
+    %% ==================== AI Pilot 协作（底部） ====================
+    subgraph AI_Pilot["🤖 AI Pilot 协作"]
+        direction LR
+        AI_IN["Agents/ + Prompts/"] --> AI_PROC["System + User Prompt"] --> AI_OUT["AI执行 → 人工确认"]
+    end
+
+    %% ==================== 层级连接 ====================
+    Role --> Phases
+    Phases --> AI_Pilot
+
+    %% ==================== 样式定义 ====================
+    classDef roleStyle fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#000
+    classDef phaseStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef aiStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef docStyle fill:#fff9c4,stroke:#f57f17,stroke-width:1px,color:#000
+    classDef stepStyle fill:#ffffff,stroke:#2e7d32,stroke-width:2px,color:#000
+
+    class Role roleStyle
+    class Phases,P1,P2,P3,P4 phaseStyle
+    class AI_Pilot aiStyle
+    class P1_D1,P1_D2,P1_D3,P1_D4,P2_D1,P2_D2,P2_D3,P2_D4,P2_D5,P3_D1,P3_D2,P3_D3,P3_D4,P3_D5,P4_D1,P4_D2,P4_D3,P4_D4 docStyle
+    class P1_S,P1_M,P1_E,P2_S,P2_M,P2_E,P3_S,P3_M,P3_E,P4_S,P4_M,P4_E stepStyle
+
