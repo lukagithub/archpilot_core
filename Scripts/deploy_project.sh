@@ -154,7 +154,7 @@ create_directories() {
     mkdir -p "$project_path"/L5_Verification/{unit,integration}
 
     # 其他目录
-    mkdir -p "$project_path"/{ReleaseNote,docs}
+    mkdir -p "$project_path"/ReleaseNote
 
     if [[ "$MODE" != "minimal" ]]; then
         if [[ "$COPY_PROMPTS" == true ]]; then

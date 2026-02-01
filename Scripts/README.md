@@ -47,7 +47,13 @@
 | `--no-scripts` | 不复制 Scripts |
 | `-h, --help` | 显示帮助 |
 
-**部署流程图**：参见 [docs/DEPLOYMENT_FLOW.mmd](../docs/DEPLOYMENT_FLOW.mmd)
+**部署流程图**：参见 [Governance/DEPLOYMENT_FLOW.mmd](../Governance/DEPLOYMENT_FLOW.mmd)
+
+### 查看 Mermaid 图表
+
+- **VS Code**：安装 "Markdown Preview Mermaid Support" 插件
+- **在线**：使用 [Mermaid Live Editor](https://mermaid.live/)
+- **GitHub**：原生支持 Mermaid 渲染
 
 ---
 
