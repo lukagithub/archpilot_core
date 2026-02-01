@@ -33,9 +33,10 @@ flowchart TB
         I_D2[/"QUICK_START.md"/]
         I2["② 部署项目"]
         I_D3[/"deploy_project.sh"/]
-        I1 --- I_D1 & I_D2
-        I_D1 & I_D2 --- I2
-        I2 --- I_D3
+        I_D1 --> I1
+        I_D2 --> I1
+        I1 --> I2
+        I_D3 --> I2
     end
 
     %% ==================== Pilot 迭代周期（核心） ====================
@@ -48,8 +49,9 @@ flowchart TB
             P1_D1[/"flow_planning.md"/]
             P1_D2[/"ARCHITECTURE_DEFINITION.md"/]
             P1_D3[/"GLOSSARY.md"/]
-            P1_S --- P1_D1
-            P1_D1 --- P1_D2 & P1_D3
+            P1_D2 --> P1_D1
+            P1_D3 --> P1_D1
+            P1_D1 --> P1_S
         end
 
         subgraph P2["Gate2 设计"]
@@ -57,15 +59,22 @@ flowchart TB
             P2_S["① L1 需求"]
             P2_D1[/"tpl_requirement.md"/]
             P2_D2[/"rules_naming.md"/]
+            P2_O1[/"FR_*.md"/]
             P2_M["② L2 架构"]
             P2_D3[/"tpl_architecture.md"/]
+            P2_O2[/"SA_*.md"/]
             P2_E["③ L3 设计"]
             P2_D4[/"tpl_design.md"/]
-            P2_S --- P2_D1 & P2_D2
-            P2_D1 & P2_D2 --- P2_M
-            P2_M --- P2_D3
-            P2_D3 --- P2_E
-            P2_E --- P2_D4
+            P2_O3[/"DD_*.md"/]
+            P2_D1 --> P2_S
+            P2_D2 --> P2_S
+            P2_S --> P2_O1
+            P2_O1 --> P2_M
+            P2_D3 --> P2_M
+            P2_M --> P2_O2
+            P2_O2 --> P2_E
+            P2_D4 --> P2_E
+            P2_E --> P2_O3
         end
 
         subgraph P3["Gate3 实现"]
@@ -73,16 +82,22 @@ flowchart TB
             P3_S["① L4 代码"]
             P3_D1[/"rules_coding.md"/]
             P3_D2[/"flow_implement.md"/]
+            P3_O1[/"代码文件"/]
             P3_M["② L5 测试"]
             P3_D3[/"tpl_testcase.md"/]
+            P3_O2[/"TC-*.md"/]
             P3_E["③ 质量检查"]
             P3_D4[/"validate_trace.py"/]
             P3_D5[/"check_naming.py"/]
-            P3_S --- P3_D1 & P3_D2
-            P3_D1 & P3_D2 --- P3_M
-            P3_M --- P3_D3
-            P3_D3 --- P3_E
-            P3_E --- P3_D4 & P3_D5
+            P3_D1 --> P3_S
+            P3_D2 --> P3_S
+            P3_S --> P3_O1
+            P3_O1 --> P3_M
+            P3_D3 --> P3_M
+            P3_M --> P3_O2
+            P3_O2 --> P3_E
+            P3_D4 --> P3_E
+            P3_D5 --> P3_E
         end
 
         subgraph P4["Gate4 发布"]
@@ -92,13 +107,16 @@ flowchart TB
             P4_D2[/"flow_release.md"/]
             P4_M["② 验收闭环"]
             P4_D3[/"calculate_score.py"/]
+            P4_O1[/"质量评分报告"/]
             P4_E["③ 迭代复盘"]
             P4_D4[/"ReleaseNote/"/]
-            P4_S --- P4_D1 & P4_D2
-            P4_D1 & P4_D2 --- P4_M
-            P4_M --- P4_D3
-            P4_D3 --- P4_E
-            P4_E --- P4_D4
+            P4_D1 --> P4_S
+            P4_D2 --> P4_S
+            P4_S --> P4_M
+            P4_D3 --> P4_M
+            P4_M --> P4_O1
+            P4_O1 --> P4_E
+            P4_E --> P4_D4
         end
 
         P1 ==> P2 ==> P3 ==> P4
@@ -117,8 +135,9 @@ flowchart TB
             AI_D2[/"agent_release.md"/]
             AI_D3[/"system_prompt_core.md"/]
             AI_D4[/"user_prompt_*.md"/]
-            AI_D1 & AI_D2 --- AI_D3
-            AI_D3 --- AI_D4
+            AI_D1 --> AI_D3
+            AI_D2 --> AI_D3
+            AI_D3 --> AI_D4
         end
 
         subgraph AI_PROC["处理"]
@@ -126,17 +145,17 @@ flowchart TB
             AI_P1["加载 System Prompt"]
             AI_P2["加载 User Prompt"]
             AI_P3["AI 执行任务"]
-            AI_P1 --- AI_P2 --- AI_P3
+            AI_P1 --> AI_P2 --> AI_P3
         end
 
         subgraph AI_OUT["输出"]
             direction TB
-            AI_O1[/"FR_*.md 需求文档"/]
-            AI_O2[/"SA_*.md 架构文档"/]
-            AI_O3[/"DD_*.md 设计文档"/]
+            AI_O1[/"FR_*.md"/]
+            AI_O2[/"SA_*.md"/]
+            AI_O3[/"DD_*.md"/]
             AI_O4[/"代码文件"/]
-            AI_O5[/"TC-*.md 测试用例"/]
-            AI_O1 --- AI_O2 --- AI_O3 --- AI_O4 --- AI_O5
+            AI_O5[/"TC-*.md"/]
+            AI_O1 --> AI_O2 --> AI_O3 --> AI_O4 --> AI_O5
         end
 
         AI_IN ==> AI_PROC ==> AI_OUT
@@ -190,21 +209,23 @@ flowchart TB
     class P1_D1 workflowStyle
     class P1_D2,P1_D3 entryStyle
 
-    %% Gate2: Templates(蓝) + Rules(靛蓝)
+    %% Gate2: Templates(蓝) + Rules(靛蓝) + Output(橙)
     class P2_D1,P2_D3,P2_D4 tplStyle
     class P2_D2 ruleStyle
+    class P2_O1,P2_O2,P2_O3 outputStyle
 
-    %% Gate3: Rules(黄) + Workflow(绿) + Templates(蓝) + Scripts(紫)
+    %% Gate3: Rules(靛蓝) + Workflow(绿) + Templates(蓝) + Scripts(紫) + Output(橙)
     class P3_D1 ruleStyle
     class P3_D2 workflowStyle
     class P3_D3 tplStyle
     class P3_D4,P3_D5 scriptStyle
+    class P3_O1,P3_O2 outputHighStyle
 
-    %% Gate4: Rules(黄) + Workflow(绿) + Scripts(紫) + Output(橙)
+    %% Gate4: Rules(靛蓝) + Workflow(绿) + Scripts(紫) + Output(橙)
     class P4_D1 ruleStyle
     class P4_D2 workflowStyle
     class P4_D3 scriptStyle
-    class P4_D4 outputStyle
+    class P4_D4,P4_O1 outputStyle
 
     %% AI Pilot: 输入(Core文件) + 输出(过程产物-高饱和暖色)
     class AI_D1,AI_D2 ruleStyle
