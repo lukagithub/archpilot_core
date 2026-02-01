@@ -1,7 +1,8 @@
 # 部署结构分层说明
 
 **更新日期**: 2026-02-01  
-**变更类型**: 目录结构优化
+**变更类型**: 目录结构优化  
+**部署模式**: 完整部署（包含所有组件）
 
 ---
 
@@ -15,15 +16,16 @@
 
 ```
 my_project/                    # 项目根目录
-├── archpilot/                 # 📦 核心框架层（通用、稳定、不变）
-│   ├── Governance/           # 治理规则
-│   │   ├── rules/            # 规则文件
-│   │   ├── checklists/       # 检查清单
-│   │   └── templates/        # 文档模板
-│   ├── Agents/               # AI Agent 定义
-│   ├── Guides/               # AI 操作指南
-│   ├── Prompts/              # Prompt 模板（标准/完整）
-│   ├── Scripts/              # 脚本工具（标准/完整）
+├── archpilot/               # 核心框架层（通用、稳定、不变）
+│   ├── Governance/         # 治理规则
+│   │   ├── rules/          # 规则文件
+│   │   ├── checklists/     # 检查清单
+│   │   └── templates/      # 文档模板
+│   ├── Agents/             # AI Agent 配置
+│   ├── Guides/             # AI 操作指南
+│   ├── Prompts/            # Prompt 模板
+│   ├── Scripts/            # 脚本工具
+│   └── README.md           # 框架层说明
 │   └── README.md             # 框架层说明
 │
 ├── L1_Requirements/           # 🎯 定制化开发区

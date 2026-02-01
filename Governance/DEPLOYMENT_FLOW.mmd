@@ -3,7 +3,7 @@
 
 flowchart TB
     subgraph Core["📦 ArchPilot Core（源框架）"]
-        direction TB
+        direction LR
         C_GOV["Governance/<br/>治理规则"]
         C_AGENT["Agents/<br/>Agent 定义"]
         C_GUIDE["Guides/<br/>AI 指南"]
@@ -13,77 +13,85 @@ flowchart TB
 
     subgraph Deploy["🚀 一键部署脚本"]
         direction TB
-        D_CMD["./deploy_project.sh<br/>my_project /path"]
-        D_OPT["可选参数<br/>-i 初始化Git"]
+        D_CMD["./deploy_project.sh my_project /path"]
+        D_OPT["选项: -i 初始化Git"]
+        D_CMD ~~~ D_OPT
     end
 
     subgraph Project["🎯 生成的项目（my_project）"]
         direction TB
 
-        subgraph P_CORE["archpilot/ 核心框架层<br/>（通用、稳定、不变）"]
-            direction TB
+        P_TOP[" "]
 
-            subgraph P_GOV["Governance/ 治理规则"]
-                P_ARCH["ARCHITECTURE_DEFINITION.md"]
-                P_GLOSS["GLOSSARY.md"]
-                P_RULES["rules/*.md"]
-                P_CHECK["checklists/*.md"]
-                P_TPL["templates/*.md"]
+        subgraph ProjectMain[" "]
+            direction LR
+
+            subgraph P_CORE["archpilot/ 📦 核心框架层"]
+                direction TB
+                PC_GOV["Governance/<br/>治理规则"]
+                PC_AGENT["Agents/<br/>AI Agent"]
+                PC_GUIDE["Guides/<br/>AI 指南"]
+                PC_PROMPT["Prompts/<br/>Prompt 模板"]
+                PC_SCRIPT["Scripts/<br/>脚本工具"]
             end
 
-            subgraph P_AI["AI 辅助"]
-                P_AGENT["Agents/*.md"]
-                P_GUIDE["Guides/*.md"]
-                P_PROMPT["Prompts/*.md"]
-            end
-
-            P_SCRIPT["Scripts/*.py"]
-        end
-
-        subgraph P_CUSTOM["项目根目录<br/>（定制化开发区）"]
-            direction TB
-
-            subgraph P_L1L5["L1-L5 架构层"]
-                P_L1["L1_Requirements/"]
-                P_L2["L2_Architecture/"]
-                P_L3["L3_DetailDesign/"]
-                P_L4["L4_Implementation/"]
-                P_L5["L5_Verification/"]
-            end
-
-            subgraph P_OTHER["项目文件"]
-                P_README["README.md"]
-                P_VERSION["VERSION"]
-                P_GIT[".gitignore"]
-                P_RELEASE["ReleaseNote/"]
+            subgraph P_CUSTOM["🎯 定制化开发区"]
+                direction TB
+                PD_L1["L1_Requirements/<br/>需求层"]
+                PD_L2["L2_Architecture/<br/>架构层"]
+                PD_L3["L3_DetailDesign/<br/>设计层"]
+                PD_L4["L4_Implementation/<br/>实现层"]
+                PD_L5["L5_Verification/<br/>验证层"]
             end
         end
+
+        P_BOT["项目根文件: README.md / VERSION / .gitignore"]
+
+        P_TOP ~~~ ProjectMain
+        ProjectMain ~~~ P_BOT
     end
 
-    subgraph Workflow["📋 后续工作流"]
-        direction LR
-        W1["1. 定制化配置"]
-        W2["2. 创建 L1 需求"]
-        W3["3. AI 辅助设计"]
-        W4["4. L1→L5 闭环"]
+    subgraph Workflow["📋 后续开发工作流（架构 → 实现）"]
+        direction TB
+
+        subgraph W_ARCH["🏗️ 架构设计阶段"]
+            direction LR
+            W1["1. 定制化配置"]
+            W2["2. 创建 L1 需求"]
+            W3["3. L2 架构设计"]
+            W1 --> W2 --> W3
+        end
+
+        subgraph W_IMPL["💻 实现验证阶段"]
+            direction LR
+            W4["4. L3 详细设计"]
+            W5["5. L4 代码实现"]
+            W6["6. L5 测试验证"]
+            W4 --> W5 --> W6
+        end
+
+        W_ARCH --> W_IMPL
     end
 
     %% 部署流程连接
     Core --> Deploy
     Deploy --> Project
 
-    %% Core 到 Project 的映射（完整部署）
-    C_GOV -.->|复制到 archpilot/| P_GOV
-    C_AGENT -.->|复制到 archpilot/| P_AGENT
-    C_GUIDE -.->|复制到 archpilot/| P_GUIDE
-    C_PROMPT -.->|复制到 archpilot/| P_PROMPT
-    C_SCRIPT -.->|复制到 archpilot/| P_SCRIPT
+    %% Core 到 Project 的映射（使用虚线表示复制关系）
+    C_GOV -.->|复制| PC_GOV
+    C_AGENT -.->|复制| PC_AGENT
+    C_GUIDE -.->|复制| PC_GUIDE
+    C_PROMPT -.->|复制| PC_PROMPT
+    C_SCRIPT -.->|复制| PC_SCRIPT
 
-    P_CORE -.->|引用| P_CUSTOM
+    %% archpilot 框架层为开发区提供规则和模板支持
+    P_CORE -.->|提供规则<br/>和模板| P_CUSTOM
 
-    %% Project 到 Workflow
+    %% Project 到 Workflow（使用不可见连线辅助布局）
     Project --> Workflow
-    W1 --> W2 --> W3 --> W4
+
+    %% 布局 trick：使用不可见连线调整对齐
+    P_CUSTOM ~~~ Workflow
 
     %% 样式定义（优化配色）
     classDef coreStyle fill:#bbdefb,stroke:#1565c0,stroke-width:3px,color:#000
@@ -92,10 +100,16 @@ flowchart TB
     classDef workflowStyle fill:#e1bee7,stroke:#6a1b9a,stroke-width:3px,color:#000
     classDef archpilotStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
     classDef customStyle fill:#b2dfdb,stroke:#00695c,stroke-width:2px,color:#000
+    classDef archStageStyle fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+    classDef implStageStyle fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef invisibleStyle fill:none,stroke:none,color:transparent
 
     class Core coreStyle
     class Deploy deployStyle
-    class Project projectStyle
+    class Project,ProjectMain projectStyle
     class Workflow workflowStyle
     class P_CORE archpilotStyle
     class P_CUSTOM customStyle
+    class W_ARCH archStageStyle
+    class W_IMPL implStageStyle
+    class P_TOP,P_BOT invisibleStyle

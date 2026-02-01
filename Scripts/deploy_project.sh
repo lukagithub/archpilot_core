@@ -50,16 +50,11 @@ show_help() {
 
 选项:
     -h, --help      显示帮助信息
-    -f, --full      完整模式（复制所有文件）
-    -m, --minimal   最小模式（仅核心文件）
     -i, --init-git  初始化 Git 仓库
-    --no-prompts    不复制 Prompts 目录
-    --no-scripts    不复制 Scripts 目录
 
 示例:
     $0 my_project                    # 在当前目录创建 my_project
-    $0 my_project /path/to -f -i    # 完整模式 + Git 初始化
-    $0 my_project . -m              # 最小模式
+    $0 my_project /path/to -i        # 指定路径 + Git 初始化
 
 EOF
 }
@@ -67,10 +62,7 @@ EOF
 # ============ 默认配置 ============
 PROJECT_NAME=""
 TARGET_DIR="."
-MODE="standard"  # standard, full, minimal
 INIT_GIT=false
-COPY_PROMPTS=true
-COPY_SCRIPTS=true
 
 # ============ 参数解析 ============
 parse_args() {
@@ -80,24 +72,8 @@ parse_args() {
                 show_help
                 exit 0
                 ;;
-            -f|--full)
-                MODE="full"
-                shift
-                ;;
-            -m|--minimal)
-                MODE="minimal"
-                shift
-                ;;
             -i|--init-git)
                 INIT_GIT=true
-                shift
-                ;;
-            --no-prompts)
-                COPY_PROMPTS=false
-                shift
-                ;;
-            --no-scripts)
-                COPY_SCRIPTS=false
                 shift
                 ;;
             -*)
@@ -145,8 +121,8 @@ create_directories() {
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
 
-    # 创建 archpilot 核心框架目录（通用、稳定、不变）
-    mkdir -p "$project_path"/archpilot/{Governance/{rules,checklists,templates},Agents,Guides}
+    # 创建 archpilot 核心框架目录（完整）
+    mkdir -p "$project_path"/archpilot/{Governance/{rules,checklists,templates},Agents,Guides,Prompts,Scripts}
 
     # 创建项目根目录的定制化开发区（L1-L5 架构层）
     mkdir -p "$project_path"/{L1_Requirements,L2_Architecture,L3_DetailDesign}
@@ -155,16 +131,6 @@ create_directories() {
 
     # 其他项目文件
     mkdir -p "$project_path"/ReleaseNote
-
-    # 可选目录（根据模式）
-    if [[ "$MODE" != "minimal" ]]; then
-        if [[ "$COPY_PROMPTS" == true ]]; then
-            mkdir -p "$project_path"/archpilot/Prompts
-        fi
-        if [[ "$COPY_SCRIPTS" == true ]]; then
-            mkdir -p "$project_path"/archpilot/Scripts
-        fi
-    fi
 
     log_done "目录结构创建完成"
 }
@@ -218,10 +184,6 @@ copy_guide_files() {
 
 # ============ 复制 Prompts 文件 ============
 copy_prompt_files() {
-    if [[ "$COPY_PROMPTS" != true ]] || [[ "$MODE" == "minimal" ]]; then
-        return
-    fi
-
     log_step "复制 Prompts 文件到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
@@ -235,10 +197,6 @@ copy_prompt_files() {
 
 # ============ 复制脚本文件 ============
 copy_script_files() {
-    if [[ "$COPY_SCRIPTS" != true ]] || [[ "$MODE" == "minimal" ]]; then
-        return
-    fi
-
     log_step "复制脚本模板到 archpilot/..."
 
     local project_path="$TARGET_DIR/$PROJECT_NAME"
@@ -282,8 +240,8 @@ ${PROJECT_NAME}/
 │   │   └── templates/      # 文档模板
 │   ├── Agents/             # AI Agent 配置
 │   ├── Guides/             # AI 操作指南
-│   ├── Prompts/            # Prompt 模板（标准/完整模式）
-│   └── Scripts/            # 脚本工具（标准/完整模式）
+│   ├── Prompts/            # Prompt 模板
+│   └── Scripts/            # 脚本工具
 │
 ├── L1_Requirements/         # L1 需求层（定制化开发区）
 ├── L2_Architecture/         # L2 架构层
@@ -514,7 +472,6 @@ show_completion() {
     echo ""
     echo -e "项目名称: ${CYAN}${PROJECT_NAME}${NC}"
     echo -e "项目路径: ${CYAN}${full_path}${NC}"
-    echo -e "部署模式: ${CYAN}${MODE}${NC}"
     echo ""
     echo -e "${YELLOW}下一步操作:${NC}"
     echo ""
@@ -557,7 +514,6 @@ main() {
 
     echo -e "项目名称: ${CYAN}${PROJECT_NAME}${NC}"
     echo -e "目标路径: ${CYAN}${TARGET_DIR}${NC}"
-    echo -e "部署模式: ${CYAN}${MODE}${NC}"
     echo ""
 
     # 执行部署步骤

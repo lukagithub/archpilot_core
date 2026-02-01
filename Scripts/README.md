@@ -18,33 +18,18 @@
 # 指定目标路径
 ./deploy_project.sh my_project /path/to/workspace
 
-# 完整模式 + Git 初始化
-./deploy_project.sh my_project /path/to -f -i
-
-# 最小模式
-./deploy_project.sh my_project . -m
+# Git 初始化
+./deploy_project.sh my_project /path/to -i
 
 # 查看帮助
 ./deploy_project.sh --help
 ```
-
-**部署模式**：
-
-| 模式 | 参数 | 包含内容 |
-|------|------|----------|
-| 标准模式 | （默认） | Governance + Agents + Guides + Prompts + Scripts |
-| 完整模式 | `-f, --full` | 标准模式 + 所有附加文件 |
-| 最小模式 | `-m, --minimal` | 仅 Governance + Agents |
 
 **选项**：
 
 | 选项 | 说明 |
 |------|------|
 | `-i, --init-git` | 初始化 Git 仓库 |
-| `-f, --full` | 完整模式 |
-| `-m, --minimal` | 最小模式 |
-| `--no-prompts` | 不复制 Prompts |
-| `--no-scripts` | 不复制 Scripts |
 | `-h, --help` | 显示帮助 |
 
 **部署流程图**：参见 [Governance/DEPLOYMENT_FLOW.mmd](../Governance/DEPLOYMENT_FLOW.mmd)
